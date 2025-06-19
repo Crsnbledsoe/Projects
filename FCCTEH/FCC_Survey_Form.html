@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Survey Form</title>
+  </head>
+
+  <body>
+    <header>
+    <h1 id="title" >Cloud Ruler Temple Survey</h1>
+    <p id="description">How did we do?</p>
+    </header>
+    <main>
+        <form id="survey-form">
+            <fieldset>
+                <legend>Personal Information</legend>
+                <label for="name" id="name-label">Name</label>
+                <input id="name" required placeholder="Full Name" type="text">
+                <label for="email" id="email-label">Email</label>
+                <input id="email" type="email" placeholder="Email@john.com" required>
+                <label for="number" id="number-label">Number</label>
+                <input type="number" id="number" min="3" max="15" placeholder="123-345-7890">
+            </fieldset>
+            <fieldset>
+                <legend>Would you stay with us again?</legend>
+                <label for="rating">Rating</label>
+                <select name="rating" id="dropdown">
+                    <option value="yes">Yes</option>
+                    <option value="maybe">Maybe</option>
+                    <option value="byazura">By Azura By Azura By Azura</option>
+                </select>
+            </fieldset>
+            <fieldset>
+                <legend>Did you enjoy the views we offer?</legend>
+                <label for="yes-option" name="views">Yes</label>
+                <input id="yes-option" name="views" type="radio" value="yes">
+                <label for="no-option" name="views">No</label>
+                <input id="no option" name="views" type="radio" value="no">
+            </fieldset>
+            <fieldset>
+                <legend>Who do you follow?</legend>
+                <label for="the_nines">The Nines</label>
+                <input id="the_nines" name="the_nines" value="the_nines" type="checkbox">
+
+                <label for="the_eights">The Eights</label>
+                <input id="the_eights" name="the_eights" value="the_eights" type="checkbox">
+            </fieldset>
+            <fieldset>
+                <legend>Final Comments</legend>
+                <label for="comments"></label>
+                <textarea cols="30" rows="10" id="comments" name="comments"></textarea>
+            </fieldset>
+            <label for="submit">Submit</label>
+          <input type="submit" id="submit">
+        </form>
+    </main>
+  </body>
+  <footer>Copyright @ me</footer>
+</html>

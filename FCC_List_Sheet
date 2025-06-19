@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link href="styles.css" rel="stylesheet">
+    <title>Switch 2 Checklist</title>
+</head>
+
+<body>
+<ul class="todo-list">
+<li>
+    <input type="checkbox" id="NS2"><label for="NS2">Nintendo Switch 2 Console Bundled w/ Mario Kart World</label>
+   
+        <ul class="sub-item">
+    <li><a class="sub-item-link" href="https://www.bestbuy.com/site/nintendo-switch-2-mario-kart-world-bundle-nintendo-switch-2/6614325.p?skuId=6614325" target="_blank">BUY HERE </a></li>
+    </ul>
+    </li>
+<li>
+    <input type="checkbox" id="DKB"><label for="DKB">DK Bonanaza</label>
+    <ul class="sub-item">
+        <li><a class="sub-item-link" href="https://www.amazon.com/Donkey-Kong-Bananza-Nintendo-Switch-2/dp/B0F66KLYVH/ref=sr_1_1?crid=3VVDKA94CLDTH&dib=eyJ2IjoiMSJ9.MRNlRxsxBE7T9ahDfopiLAw8RuumSv4RBhLIf5seattczyZGsc8D90_CTLctXMbitJE5fgxHH50Wky2vsDWQAX1Kwz4g6PkBXCljF_7ibHcM7fCfXj5MLRgLatfoNr4qvxz4UJpgPRxR2FC9tRnCLFfeW8yy9MjN9PwL0srR-b_ADnmcdX3oKmfhtNqgwmBpd850Af6uvbHFY9oEah6vY5g8r_1AVUKhx20eMfnS5q2BhHADDRcjbCUqKu40qRoMaRdBMIofe3lbbSirJ0z17pvTFVpgZ33cl211XXaonYE.gTfO99trrYpl8bX9UGSOd1EpHWSucFerDdfGroyPbME&dib_tag=se&keywords=donkey+kong+bananza&qid=1750331865&sprefix=donkey+k%2Caps%2C124&sr=8-1" target="_blank">BUY HERE </a></li></ul></li>
+<li><input type="checkbox" id="NS2PC"><label for="NS2PC">Switch 2 Pro Controller</label>
+<ul class="sub-item">
+    <li>
+    <a class="sub-item-link" href="https://www.bestbuy.com/site/nintendo-switch-2-pro-controller-black/6625904.p?skuId=6625904" target="_blank">BUY HERE </a></li>
+        </ul></li>
+<li><input type="checkbox" id="MSDC"><label for ="MSDC">Micro SD Card</label><ul class="sub-item">
+    <li>
+        <a class="sub-item-link" href="https://www.bestbuy.com/site/sandisk-express-256gb-microsd-pcie-3-1-nvme-uhs-i-memory-card-works-with-nintendo-switch-2/6619200.p?skuId=6619200" target="_blank">BUY HERE </a>
+    </li>
+    </ul></li>
+</ul>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+.classes {
+background-color: rgb(224, 146, 43);
+}
+
+p {
+    color: blue
+}
+
+.char_sheet{
+    background: linear-gradient(to right, burlywood, blue);
+}

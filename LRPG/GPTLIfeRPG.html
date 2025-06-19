@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Life RPG MVP</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    input, select, button { margin: 5px; }
+    .task { margin: 10px 0; }
+    .progress-bar { height: 20px; background: #eee; border: 1px solid #aaa; width: 100%; margin: 10px 0; }
+    .progress { height: 100%; background: limegreen; width: 0%; }
+  </style>
+</head>
+<body>
+  <h1>🛡️ Life RPG</h1>
+  <div>
+    <label>Choose Class:
+      <select id="class">
+        <option>Coder</option>
+        <option>Writer</option>
+        <option>Explorer</option>
+      </select>
+    </label>
+  </div>
+
+  <h2>Level: <span id="level">1</span> | XP: <span id="xp">0</span>/100</h2>
+  <div class="progress-bar"><div class="progress" id="progress-bar"></div></div>
+
+  <h3>Add Task</h3>
+  <input type="text" id="taskName" placeholder="Task name">
+  <input type="number" id="taskXP" placeholder="XP value">
+  <button onclick="addTask()">Add</button>
+
+  <h3>Tasks</h3>
+  <div id="taskList"></div>
+
+  <script>
+    let state = JSON.parse(localStorage.getItem("rpg-state")) || {
+      xp: 0, level: 1, class: "Coder", tasks: []
+    };
+
+    document.getElementById("class").value = state.class;
+    document.getElementById("class").addEventListener("change", e => {
+      state.class = e.target.value;
+      save();
+    });
+
+    function save() {
+      localStorage.setItem("rpg-state", JSON.stringify(state));
+      render();
+    }
+
+    function addTask() {
+      const name = document.getElementById("taskName").value;
+      const xp = parseInt(document.getElementById("taskXP").value);
+      if (!name || isNaN(xp)) return alert("Fill in both fields.");
+      state.tasks.push({ name, xp });
+      save();
+    }
+
+    function completeTask(index) {
+      state.xp += state.tasks[index].xp;
+      while (state.xp >= 100) {
+        state.xp -= 100;
+        state.level += 1;
+      }
+      state.tasks.splice(index, 1);
+      save();
+    }
+
+    function render() {
+      document.getElementById("level").textContent = state.level;
+      document.getElementById("xp").textContent = state.xp;
+      document.getElementById("progress-bar").style.width = `${state.xp}%`;
+
+      const taskList = document.getElementById("taskList");
+      taskList.innerHTML = "";
+      state.tasks.forEach((task, i) => {
+        const div = document.createElement("div");
+        div.className = "task";
+        div.innerHTML = `${task.name} (${task.xp} XP) <button onclick="completeTask(${i})">Complete</button>`;
+        taskList.appendChild(div);
+      });
+    }
+
+    render();
+  </script>
+</body>
+</html>
