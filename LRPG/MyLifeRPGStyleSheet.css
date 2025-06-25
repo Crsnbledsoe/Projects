@@ -9,3 +9,8 @@ p {
 .char_sheet{
     background: linear-gradient(to right, burlywood, blue);
 } 
+
+.sett_sheet {
+    background-color: black;
+    color: greenyellow
+}
