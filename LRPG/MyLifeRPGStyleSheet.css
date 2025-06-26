@@ -11,6 +11,20 @@ p {
 } 
 
 .sett_sheet {
-    background-color: black;
+    background-color: #858585;
     color: greenyellow
+}
+
+.sett_test {
+    background-color: darkgray;
+    color: blue;
+    border: greenyellow dashed 2px
+}
+
+.sett_h2 {
+  border-color: greenyellow;
+    border-style: solid;
+    padding: 15px;
+    Padding-top: 3px
+
 }
