@@ -1,1 +1,1 @@
-document.getElementById("").textContent = ""
+document.getElementById("increment");
