@@ -1,33 +1,23 @@
-console.log("Hi there!");
-console.log("I am excited to talk to you.");
+console.log("Hello! I'm your coding fun fact guide!");
 
-let bot;
+let botName;
+botName = "Bob";
 let botLocation;
+botLocation = "Space";
+let favoriteLanguage ;
+favoriteLanguage = "JS";
 
-bot = "teacherBot";
-botLocation = "the universe";
+console.log("My name is " +  botName  + " and I live on " +  botLocation + ".");
 
-console.log("Allow me to introduce myself.");
+console.log("My favorite programming language is " + favoriteLanguage + ".");
 
-const botIntroduction = "My name is " + bot + ".";
-console.log(botIntroduction);
+let codingFact = favoriteLanguage + "and Java are not the same";
+console.log(codingFact);
 
-const botLocationSentence = "I live in " + botLocation + ".";
-console.log(botLocationSentence);
+codingFact = favoriteLanguage + " is lots of fun."
+console.log(codingFact);
 
-bot = "professorBot";
+codingFact = favoriteLanguage + " is great."
+console.log(codingFact)
 
-const nicknameIntroduction = "My nickname is " + bot + ".";
-console.log(nicknameIntroduction);
-
-bot = "awesomeTeacherBot";
-
-const newNicknameGreeting = "I love my nickname but I wish people would call me " + bot + ".";
-console.log(newNicknameGreeting);
-
-const favoriteSubject = "Computer Science";
-
-const favoriteSubjectSentence = "My favorite subject is " + favoriteSubject + ".";
-console.log(favoriteSubjectSentence);
-
-console.log("Well, it was nice to talk to you. Have a nice day!")
+console.log("It was fun sharing these facts with you. Goodbye! - " + botName + " from " + botLocation +".")
