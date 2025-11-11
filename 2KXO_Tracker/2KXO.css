@@ -4,3 +4,12 @@ color: greenyellow
 }
 
 
+.results div {
+width: 100%;
+padding: 10px;
+text-align: center;
+}
+
+.results div * {
+margin: 5px;
+}

@@ -2,23 +2,25 @@
 <html lang="en">
     <head>
         <title>2KXO Tracker</title>
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
         <link href="2KXO.css" rel="stylesheet">
     </head>
 </html>
 <body>
-    <h1>2KXO Tracker</h1>
+    <h1>2KXO Trackertt</h1>
     <main>
-        <label for="Result">Won or Lost?</label>
-        <select name= "Result" id= "Result">
+        <form id="statForm">
+        <label for="win">Won or Lost?</label>
+        <select name= "win" id= "win">
             <option value="Blank"></option>
             <option value="Won">Won</option>
             <option value="Lost">Lost</option>
-            <
          </select>
+
+         
         <label for="fighter1">Choose Point Fighter</label>
         <select name= "fighter1" id= "fighter1">
-            <option value="Blank"></option>
+            <option value="" disabled selected >Fighter 1</option>
             <option value="Ahri">Ahri</option>
             <option value="Yasuo">Yasuo</option>
             <option value="Ekko">Ekko</option>
@@ -34,7 +36,7 @@
 
          <label for="fighter2">Choose Second Fighter</label>
         <select name= "fighter2" id= "fighter2">
-            <option value="Blank"></option>
+            <option value="" disabled selected >Fighter 2</option>
             <option value="Ahri">Ahri</option>
             <option value="Yasuo">Yasuo</option>
             <option value="Ekko">Ekko</option>
@@ -48,6 +50,8 @@
             <option value="Darius">Darius</option>
          </select>
          <button id="saveBtn">Save Result</button>
+        </form>
+        <div class="results"></div>
     </main>
             <script src="2KXO.js"></script> 
 </script>
