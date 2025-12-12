@@ -1,18 +1,21 @@
 body {
-background-color: rgb(42, 15, 214);
-color: greenyellow
+background-color: rgb(18, 18, 18);
+color: rgb(204, 245, 100);
 }
-
 
 .results {
 width: 100%;
 padding: 10px;
 text-align: center;
-background-color: grey;
+background-color: blue;
 }
 
 .results {
 margin: 5px;;
 border: 5px;
 border-style: dashed;
+}
+
+p {
+    color:rgb(245, 100, 100)
 }
