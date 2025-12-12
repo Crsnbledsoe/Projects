@@ -27,7 +27,7 @@ function myAlert(e) {
     
     //push newMatch to matches array
     matches.push(newMatch);
-
+//
     displayMatches();
 }
 
