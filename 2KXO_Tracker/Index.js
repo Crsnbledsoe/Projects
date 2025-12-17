@@ -30,7 +30,8 @@ function myAlert(e) {
     //runs the display matches function to add the new match to the screen
     displayMatches(match);
     
-    matches = JSON.parse(localStorage.setItem("matches"))
+    matches = JSON.stringify(matches)
+    localStorage.setItem("matches", matches);
 }
 
 function displayMatches(match) {
@@ -47,7 +48,6 @@ function displayMatches(match) {
 
 function deleteMatch(e) {
     document.getElementById(e.target.dataset.id)
-    deletedMatch.remove();
     matches = JSON.parse(localStorage.setItem("matches"))
 }
 
