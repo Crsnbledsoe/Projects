@@ -1,13 +1,9 @@
-//const statForm = document.getElementById('statForm');
-//const resultsContainer = document.querySelector(".results")
-//const win = statForm['win'];
+//I'm not saving to local storage correctly, need to save matches back to lokcal storage
+
+
 const fighter1select = document.getElementById("fighter1");
 const fighter2select = document.getElementById("fighter2");
 const win = document.getElementById("win");
-//const fighter2 = statForm['fighter2'];
-
-
-
 
 document.getElementById("saveBtn").addEventListener("click", myAlert);
 document.addEventListener("DOMContentLoaded", loadMatches);
@@ -16,29 +12,25 @@ document.getElementById("results").addEventListener("click", deleteMatch);
 function loadMatches() {
     const matches = JSON.parse(localStorage.getItem("matches")) || [];
     matches.forEach(displayMatches);
-
 }
-//document.addEventListener('DOMContentLoaded', refLocStor());
 
 function myAlert(e) {
     e.preventDefault();
-
     //Loads any existing matches saved in local storage or creates a new/empty array titled 'matches'
     const matches = JSON.parse(localStorage.getItem("matches")) || [];
-
     //add a new match
     const match = {
         win: win.value,
         fighter1: fighter1select.value,
         fighter2: fighter2select.value,
         id: Date.now(),
-    };
-        
-    //push newMatch to matches array
+    }; 
+    //push the new match to matches array
     matches.push(match);
-
-
+    //runs the display matches function to add the new match to the screen
     displayMatches(match);
+    
+    matches = JSON.parse(localStorage.setItem("matches"))
 }
 
 function displayMatches(match) {
@@ -53,9 +45,10 @@ function displayMatches(match) {
     document.getElementById("results").appendChild(para);
 };
 
-function deleteMatch() {
-    para.remove();
-    
+function deleteMatch(e) {
+    document.getElementById(e.target.dataset.id)
+    deletedMatch.remove();
+    matches = JSON.parse(localStorage.setItem("matches"))
 }
 
 
