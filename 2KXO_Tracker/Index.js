@@ -10,6 +10,14 @@ const win = document.getElementById("win");
 
 
 document.getElementById("saveBtn").addEventListener("click", myAlert);
+document.addEventListener("DOMContentLoaded", loadMatches);
+document.getElementById("results").addEventListener("click", deleteMatch);
+
+function loadMatches() {
+    const matches = JSON.parse(localStorage.getItem("matches")) || [];
+    matches.forEach(displayMatches);
+
+}
 //document.addEventListener('DOMContentLoaded', refLocStor());
 
 function myAlert(e) {
@@ -19,23 +27,51 @@ function myAlert(e) {
     const matches = JSON.parse(localStorage.getItem("matches")) || [];
 
     //add a new match
-    const newMatch = {
+    const match = {
         win: win.value,
         fighter1: fighter1select.value,
         fighter2: fighter2select.value,
+        id: Date.now(),
     };
-    
+        
     //push newMatch to matches array
-    matches.push(newMatch);
-//
-    displayMatches();
+    matches.push(match);
+
+
+    displayMatches(match);
 }
 
 function displayMatches(match) {
     const para = document.createElement("p");
-    para.textContent = `${match.win} | ${match.fighter1select} & ${match.fighter2select}`;
+    para.id = match.id
+    para.textContent = `${match.win} | ${match.fighter1} & ${match.fighter2}`;
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = ("Delete Match")
+    deleteBtn.dataset.id = match.id
+    para.appendChild(deleteBtn);
     document.getElementById("results").appendChild(para);
+};
+
+function deleteMatch() {
+    para.remove();
+    
 }
+
+
+
+
+
+
+
+/*matches.forEach(displayMatches) 
+{
+    const p = document.createElement("p");
+    const results = document.getElementById("results");
+    p.textContent= matches;
+    results.appendChild(p);
+} ;
+
 /*
     localStorage.setItem("matches",JSON.stringify(matches))
 

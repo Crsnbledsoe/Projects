@@ -17,5 +17,9 @@ border-style: dashed;
 }
 
 p {
-    color:rgb(245, 100, 100)
+    color:rgb(245, 100, 100);
+    border:  1px;
+    border-style: solid;
+    border-color:rgb(204, 245, 100);
+    padding: 2px;
 }
