@@ -1,4 +1,3 @@
-//I'm not saving to local storage correctly, need to save matches back to lokcal storage
 
 
 const fighter1select = document.getElementById("fighter1");
