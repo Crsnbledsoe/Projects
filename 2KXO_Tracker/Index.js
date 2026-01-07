@@ -1,18 +1,24 @@
 
-
+//pull fighters and win/lose options selected by user from HTML for use/manipulation/storage in JS
 const fighter1select = document.getElementById("fighter1");
 const fighter2select = document.getElementById("fighter2");
 const win = document.getElementById("win");
 
+//adds listener to the HTMl element with saveBtn as ID and then runs the JS function myAlert when clicked
 document.getElementById("saveBtn").addEventListener("click", myAlert);
+
+//adds listener to run loadMatches func when page is loaded/reloaded
 document.addEventListener("DOMContentLoaded", loadMatches);
+
+//adds listener for a click on the results box and then runs deleteMatch func
 document.getElementById("results").addEventListener("click", deleteMatch);
 
+//parses local storage for an it called "matches" and sets that equal to the JS variable matches
 function loadMatches() {
     const matches = JSON.parse(localStorage.getItem("matches")) || [];
     matches.forEach(displayMatches);
 }
-
+//loads previously saved matches, creates new match, pushes new match to the matches array, and then runs displayMatches to updated stats on screen 
 function myAlert(e) {
     e.preventDefault();
     //Loads any existing matches saved in local storage or creates a new/empty array titled 'matches'
