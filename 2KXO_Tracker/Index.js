@@ -35,28 +35,33 @@ function myAlert(e) {
     //runs the display matches function to add the new match to the screen
     displayMatches(match);
     
-    matches = JSON.stringify(matches)
-    localStorage.setItem("matches", matches);
+    localStorage.setItem("matches", JSON.stringify(matches));
 }
 
 function displayMatches(match) {
     const para = document.createElement("p");
-    para.id = match.id
+    para.id = String(match.id)
     para.textContent = `${match.win} | ${match.fighter1} & ${match.fighter2}`;
 
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = ("Delete Match")
-    deleteBtn.dataset.id = match.id
+    deleteBtn.dataset.id = String(match.id);
     para.appendChild(deleteBtn);
     document.getElementById("results").appendChild(para);
 };
 
 function deleteMatch(e) {
-    document.getElementById(e.target.dataset.id)
-    matches = JSON.parse(localStorage.setItem("matches"))
+    if (e.target.tagName === "BUTTON" && e.target.dataset.id) {
+        const matchId = parseInt(e.target.dataset.id);
+    document.getElementById(matchId).remove()
+    let matches = JSON.parse(localStorage.getItem("matches")) || [];
+matches = matches.filter(match=> String(match.id) !== matchId);
+localStorage.setItem("matches", JSON.stringify(matches));
+    }
+    
 }
 
-
+remove(closest("p"));
 
 
 
