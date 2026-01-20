@@ -45,26 +45,25 @@ function displayMatches(match) {
 
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = ("Delete Match")
+    deleteBtn.classList.add("delBtn")
     deleteBtn.dataset.id = String(match.id);
     para.appendChild(deleteBtn);
     document.getElementById("results").appendChild(para);
 };
 
 function deleteMatch(e) {
-    if (e.target.tagName === "BUTTON" && e.target.dataset.id) {
-        const matchId = parseInt(e.target.dataset.id);
-    document.getElementById(matchId).remove()
-    let matches = JSON.parse(localStorage.getItem("matches")) || [];
-matches = matches.filter(match=> String(match.id) !== matchId);
-localStorage.setItem("matches", JSON.stringify(matches));
-    }
-    
+    if (e.target.closest(".delBtn")) {
+        const para = e.target.closest("p");
+            if (para && e.target.id === para.id) // Prevent deleting when clicking on the paragraph itself
+            {
+            para.remove();
+            const id = para.id;
+            let matches = JSON.parse(localStorage.getItem("matches")) || [];
+            matches = matches.filter(match => match.id !== id);
+            localStorage.setItem("matches", JSON.stringify(matches)); }
+        
 }
-
-remove(closest("p"));
-
-
-
+}
 
 
 /*matches.forEach(displayMatches) 
