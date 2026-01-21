@@ -54,7 +54,7 @@ function displayMatches(match) {
 function deleteMatch(e) {
     if (e.target.closest(".delBtn")) {
         const para = e.target.closest("p");
-            if (para && e.target.id === para.id) // Prevent deleting when clicking on the paragraph itself
+            if (para) // Prevent deleting when clicking on the paragraph itself
             {
             para.remove();
             const id = para.id;
