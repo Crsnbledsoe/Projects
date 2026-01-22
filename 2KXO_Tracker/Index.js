@@ -28,7 +28,7 @@ function myAlert(e) {
         win: win.value,
         fighter1: fighter1select.value,
         fighter2: fighter2select.value,
-        id: Date.now(),
+        id: String(Date.now()),
     }; 
     //push the new match to matches array
     matches.push(match);
@@ -59,8 +59,11 @@ function deleteMatch(e) {
             para.remove();
             const id = para.id;
             let matches = JSON.parse(localStorage.getItem("matches")) || [];
+            console.log("Before delete:", matches, "Deleting id:", id);
             matches = matches.filter(match => match.id !== id);
-            localStorage.setItem("matches", JSON.stringify(matches)); }
+            console.log("After delete:", matches);
+            localStorage.setItem("matches", JSON.stringify(matches));
+            }
         
 }
 }
