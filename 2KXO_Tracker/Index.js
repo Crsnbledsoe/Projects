@@ -4,6 +4,7 @@ const fighter1select = document.getElementById("fighter1");
 const fighter2select = document.getElementById("fighter2");
 const win = document.getElementById("win");
 const matches = JSON.parse(localStorage.getItem("matches")) || [];
+console.log(win.value);
 
 
 
@@ -34,6 +35,10 @@ function myAlert(e) {
     e.preventDefault();
     //Loads any existing matches saved in local storage or creates a new/empty array titled 'matches'
     const matches = JSON.parse(localStorage.getItem("matches")) || [];
+    if (win.value == 'Blank') {
+        alert("Please select an option before continuing.");
+        return;
+    }
     //add a new match
     const match = {
         win: win.value,
@@ -47,6 +52,7 @@ function myAlert(e) {
     displayMatches(match);
     
     localStorage.setItem("matches", JSON.stringify(matches));
+    alert("Match Saved!");
 }
 
 function displayMatches(match) {
@@ -74,33 +80,32 @@ function deleteMatch(e) {
             matches = matches.filter(match => match.id !== id);
             console.log("After delete:", matches);
             localStorage.setItem("matches", JSON.stringify(matches));
+            alert("Match Deleted!");
             }
         
 }
 }
 const wins = matches.filter(m => m.win === "Won").length;
+const losses = matches.filter(m => m.win === "Lost").length;
+
 
 console.log(wins);
-document.getElementById("wins").textContent = `WINS: ${wins}`;
+console.log(losses);
+document.getElementById("w/l").textContent = `W/L: ${wins}/${losses}`;
 
+const ctx = document.getElementById('myChart').getContext('2d');
 
-const ctx = document.getElementById('myChart');
-
-new Chart(ctx, {
-    type: 'bar',
+const resultsChart = new Chart(ctx, {
+    type: 'pie',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['Wins', 'Losses'],
       datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1
-      }]
+        data: [wins, losses],
+        backgroundColor: ['rgb(204, 245, 100)', 'red'],
+    }]
     },
     options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
+      responsive: true,
       }
     }
-  });
+  );

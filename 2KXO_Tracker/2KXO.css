@@ -8,17 +8,15 @@ width: 50%;
 padding: 10px;
 text-align: center;
 background-color: blue;
+
+display: flex;
+flex-direction: column ;
+gap: 6px;
+
 }
 
-.results {
-margin: 5px;;
-border: 5px;
-border-style: solid;
-border-color: rgb(18, 18, 18);
-}
-
-p {
-    display: flex;
+.results p {
+display: flex;
     justify-content: space-between;
     align-items: center;
     color:rgb(245, 100, 100);
@@ -27,3 +25,17 @@ p {
     border-color:rgb(204, 245, 100);
     padding: 2px;
 }
+
+p.wl {
+    color: lime;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.chart-container {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+}
+
