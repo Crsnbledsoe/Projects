@@ -3,21 +3,32 @@
 const fighter1select = document.getElementById("fighter1");
 const fighter2select = document.getElementById("fighter2");
 const win = document.getElementById("win");
+const matches = JSON.parse(localStorage.getItem("matches")) || [];
+
+
 
 //adds listener to the HTMl element with saveBtn as ID and then runs the JS function myAlert when clicked
 document.getElementById("saveBtn").addEventListener("click", myAlert);
 
+
+
 //adds listener to run loadMatches func when page is loaded/reloaded
 document.addEventListener("DOMContentLoaded", loadMatches);
 
+
+
 //adds listener for a click on the results box and then runs deleteMatch func
 document.getElementById("results").addEventListener("click", deleteMatch);
+
+
 
 //parses local storage for an it called "matches" and sets that equal to the JS variable matches
 function loadMatches() {
     const matches = JSON.parse(localStorage.getItem("matches")) || [];
     matches.forEach(displayMatches);
 }
+
+
 //loads previously saved matches, creates new match, pushes new match to the matches array, and then runs displayMatches to updated stats on screen 
 function myAlert(e) {
     e.preventDefault();
@@ -67,35 +78,29 @@ function deleteMatch(e) {
         
 }
 }
+const wins = matches.filter(m => m.win === "Won").length;
+
+console.log(wins);
+document.getElementById("wins").textContent = `WINS: ${wins}`;
 
 
-/*matches.forEach(displayMatches) 
-{
-    const p = document.createElement("p");
-    const results = document.getElementById("results");
-    p.textContent= matches;
-    results.appendChild(p);
-} ;
+const ctx = document.getElementById('myChart');
 
-/*
-    localStorage.setItem("matches",JSON.stringify(matches))
-
-    localStorage.setItem("match",JSON.stringify(matchData));
-    //const match = localStorage.getItem("match")
-    const match = JSON.parse(localStorage.getItem("match"))
-    console.log(match)
-    const para = document.createElement("p");
-    para.textContent = match
-    document.getElementById("results").appendChild(para)
-    //document.getElementById("results").textContent = match
-    alert("Match Saved!");
-}*/
-
-/*function refLocStor() {
- const match = JSON.parse(localStorage.getItem("match"))
-    console.log(match)
-    const para = document.createElement("p");
-    para.textContent = match
-    document.getElementById("results").appendChild(para)}
-//const matches = document.querySelectorAll("#statForm");
-//console.log(matches)};*/
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
