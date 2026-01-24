@@ -37,9 +37,17 @@ function myAlert(e) {
     const matches = JSON.parse(localStorage.getItem("matches")) || [];
     if (win.value == 'Blank') {
         alert("Please select an option before continuing.");
-        return;
+    }
+
+    else if (fighter1select.value == 'Blank') {
+        alert("Please select fighters.");
+    }
+
+    else if (fighter2select.value == 'Blank') {
+        alert("Please select fighters.");
     }
     //add a new match
+    else {
     const match = {
         win: win.value,
         fighter1: fighter1select.value,
@@ -54,7 +62,7 @@ function myAlert(e) {
     localStorage.setItem("matches", JSON.stringify(matches));
     alert("Match Saved!");
 }
-
+}
 function displayMatches(match) {
     const para = document.createElement("p");
     para.id = String(match.id)
