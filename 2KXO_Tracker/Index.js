@@ -1,11 +1,30 @@
+//linking images of fighters into js
+const fighterImages = {
+    Ahri: "images/Ahri_cs.png",
+    Akali: "images/Akali_cs.png",
+    Blitzcrank: "images/Blitzcrank_cs.avif",
+    Braum: "images/Braum_cs.png",
+    Caitlyn: "images/Caitlyn_cs.png",
+    Darius: "images/Darius_cs.png",
+    Ekko: "images/Ekko_cs.png",
+    Illaoi: "images/Illaoi_cs.png",
+    Jinx: "images/Jinx_cs.png",
+    Teemo: "images/Teemo_cs.png",
+    Vi: "images/Vi_cs.png",
+    Warwick: "images/Warwick_cs.png",
+    Yasuo: "images/Yasuo_cs.png"
+}
+
+
 
 //pull fighters and win/lose options selected by user from HTML for use/manipulation/storage in JS
 const fighter1select = document.getElementById("fighter1");
 const fighter2select = document.getElementById("fighter2");
+const oppfighter1select = document.getElementById("oppfighter1");
+const oppfighter2select = document.getElementById("oppfighter2");
 const win = document.getElementById("win");
 const matches = JSON.parse(localStorage.getItem("matches")) || [];
 console.log(win.value);
-
 
 
 //adds listener to the HTMl element with saveBtn as ID and then runs the JS function myAlert when clicked
@@ -52,6 +71,8 @@ function myAlert(e) {
         win: win.value,
         fighter1: fighter1select.value,
         fighter2: fighter2select.value,
+        oppfighter1: oppfighter1select.value,
+        oppfighter2: oppfighter2select.value,
         id: String(Date.now()),
     }; 
     //push the new match to matches array
@@ -65,8 +86,41 @@ function myAlert(e) {
 }
 function displayMatches(match) {
     const para = document.createElement("p");
-    para.id = String(match.id)
-    para.textContent = `${match.win} | ${match.fighter1} & ${match.fighter2}`;
+    para.id = String(match.id);
+
+    //create image for fighter1
+    const fighter1Image = document.createElement("img");
+    fighter1Image.src = fighterImages[match.fighter1]; // Set the source of the image to the path of the Ahri image
+    fighter1Image.alt = match.fighter1; // Set alt text for accessibility
+    fighter1Image.style.width = "100px"; // Set the width of the image
+
+    //create image for fighter2
+    const fighter2Image = document.createElement("img");
+    fighter2Image.src = fighterImages[match.fighter2]; // Set the source of the image to the path of the Ahri image
+    fighter2Image.alt = match.fighter2; // Set alt text for accessibility
+    fighter2Image.style.width = "100px"; // Set the width of the image
+
+     //create image for fighter1
+    const oppfighter1Image = document.createElement("img");
+    oppfighter1Image.src = fighterImages[match.oppfighter1]; // Set the source of the image to the path of the Ahri image
+    oppfighter1Image.alt = match.oppfighter1; // Set alt text for accessibility
+    oppfighter1Image.style.width = "100px"; // Set the width of the image
+
+    //create image for fighter2
+    const oppfighter2Image = document.createElement("img");
+    oppfighter2Image.src = fighterImages[match.oppfighter2]; // Set the source of the image to the path of the Ahri image
+    oppfighter2Image.alt = match.oppfighter2; // Set alt text for accessibility
+    oppfighter2Image.style.width = "100px"; // Set the width of the image
+
+    para.textContent = `${match.win} | ${match.fighter1} & ${match.fighter2}`; 
+    para.appendChild(fighter1Image);
+    para.appendChild(document.createTextNode(` & `));
+    para.appendChild(fighter2Image);
+    para.appendChild(document.createTextNode(` vs. `));
+    para.appendChild(oppfighter1Image);
+    para.appendChild(document.createTextNode(` & `));
+    para.appendChild(oppfighter2Image);
+    para.appendChild(document.createTextNode(` ${match.oppfighter1} & ${match.oppfighter2}  `));
 
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = ("Delete Match")
