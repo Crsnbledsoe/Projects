@@ -1,18 +1,18 @@
 //linking images of fighters into js
 const fighterImages = {
-    Ahri: "images/Ahri_cs.png",
-    Akali: "images/Akali_cs.png",
-    Blitzcrank: "images/Blitzcrank_cs.avif",
-    Braum: "images/Braum_cs.png",
-    Caitlyn: "images/Caitlyn_cs.png",
-    Darius: "images/Darius_cs.png",
-    Ekko: "images/Ekko_cs.png",
-    Illaoi: "images/Illaoi_cs.png",
-    Jinx: "images/Jinx_cs.png",
-    Teemo: "images/Teemo_cs.png",
-    Vi: "images/Vi_cs.png",
-    Warwick: "images/Warwick_cs.png",
-    Yasuo: "images/Yasuo_cs.png"
+    Ahri: "../images/Ahri_cs.png",
+    Akali: "../images/Akali_cs.png",
+    Blitzcrank: "../images/Blitzcrank_cs.avif",
+    Braum: "../images/Braum_cs.png",
+    Caitlyn: "../images/Caitlyn_cs.png",
+    Darius: "../images/Darius_cs.png",
+    Ekko: "../images/Ekko_cs.png",
+    Illaoi: "../images/Illaoi_cs.png",
+    Jinx: "../images/Jinx_cs.png",
+    Teemo: "../images/Teemo_cs.png",
+    Vi: "../images/Vi_cs.png",
+    Warwick: "../images/Warwick_cs.png",
+    Yasuo: "../images/Yasuo_cs.png"
 }
 
 
