@@ -5,12 +5,8 @@ const app = express();
 //listen for requests
 app.listen(3000);
 app.get('/', (req, res) => {
-   res.sendFile('./HTML/2XKOT.html', {root: __dirname})
-
+    res.send('<p>Home Page</p>') //.send method infers the content type and status code
 });
-
-app.get('/2XKOT', (req, res) => {
-    res.send('<p>Home Page</p>') 
 
 fs.writeFile('./test1.txt', 'hello world', (err) => {
 
