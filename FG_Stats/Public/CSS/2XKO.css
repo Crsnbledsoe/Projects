@@ -39,3 +39,10 @@ p.wl {
     margin: auto;
 }
 
+.nav {
+    color: purple;
+}
+
+a:link {
+    color: red;
+}
