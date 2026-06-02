@@ -2,12 +2,29 @@ const express = require('express');
 const fs = require('fs');
 const app = express();
 const morgan = require('morgan');
+const Database = require('better-sqlite3');
+
+const db = new Database('stats.db')
+
+db.pragma('journal_mode = WAL');
+db.pragma('foreign_keys = ON');
+
+//create table if it doesn't exist
+db.exec(`CREATE TABLE IF NOT EXISTS matches (
+   id INTEGER PRIMARY KEY AUTOINCREMENT,
+   fighter1 TEXT NOT NULL,
+   fighter2 TEXT NOT NULL,
+   oppfighter1 TEXT NOT NULL,
+   oppfighter2 TEXT NOT NULL,
+   result TEXT NOT NULL,
+   event_timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+)`);
 
 //get static files
 app.use(express.static('Public'));
 
 //listen for requests
-app.listen(3000);
+app.listen(3000, '0.0.0.0');
 
 app.use(morgan('dev'));
 
