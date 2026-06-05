@@ -1,6 +1,7 @@
-//new version of index with server logic
+//This is the old version of the index.js file that uses local storage to save matches and display stats. The new version uses a backend server and database to store matches and display stats.
+
 //linking images of fighters into js
-const fighterImages = { 
+const fighterImages = {
     Ahri: "../images/Ahri_cs.png",
     Akali: "../images/Akali_cs.png",
     Blitzcrank: "../images/Blitzcrank_cs.avif",
