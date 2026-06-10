@@ -8,6 +8,7 @@ app.use(express.urlencoded({
    extended: true,
    limit: '10mb'})
 );
+app.use(express.json())
 
 const db = new Database('stats.db')
 
@@ -47,10 +48,7 @@ app.get('/', (req, res) => {
    res.sendFile('./HTML/2XKOT.html', {root: __dirname})
 });
 
-//404
-app.use((req, res) => {
-    res.status(404).sendFile('./HTML/404.html', {root: __dirname})
-})
+
 //creating endpoint to receive data from the form
    //listening for post requests to /submit-match from index.js
 app.post('/submit-match', ( req, res) => {
@@ -58,7 +56,7 @@ app.post('/submit-match', ( req, res) => {
       console.log(req.body);
 //try/catch
       try {
-      const stmt = db.prepare('INSERT INTO matches (fighter1, fighter2, oppfighter1, oppfighter2, result,) VALUES (?, ?, ?, ?, ?)');
+      const stmt = db.prepare('INSERT INTO matches (fighter1, fighter2, oppfighter1, oppfighter2, result) VALUES (?, ?, ?, ?, ?)');
       stmt.run(fighter1, fighter2, oppfighter1, oppfighter2, result);
       res.send('Match data received and stored successfully');
 } catch (err) {
@@ -68,6 +66,10 @@ app.post('/submit-match', ( req, res) => {
    }
 })
 
+//404
+app.use((req, res) => {
+    res.status(404).sendFile('./HTML/404.html', {root: __dirname})
+})
 //app.get('/2XKOT', (req, res) => {
    // res.send('<p>Home Page</p>') 
 //});
