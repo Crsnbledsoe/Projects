@@ -48,6 +48,10 @@ app.get('/', (req, res) => {
    res.sendFile('./HTML/2XKOT.html', {root: __dirname})
 });
 
+app.get('/Smash.html', (req, res) => {
+   res.sendFile('./HTML/Smash.html', {root: __dirname})
+});
+
 
 //creating endpoint to receive data from the form
    //listening for post requests to /submit-match from index.js
