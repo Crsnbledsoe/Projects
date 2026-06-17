@@ -32,7 +32,24 @@ document.getElementById("saveBtn").addEventListener("click", myAlert);
 
 
 //adds listener to run loadMatches func when page is loaded/reloaded
-//document.addEventListener("DOMContentLoaded", initPage);
+document.addEventListener("DOMContentLoaded", pageReloaded);
+
+async function pageReloaded() {
+    const response = await fetch(`match-Display`, {
+        method: "GET"
+    })
+        const data = await response.json();
+        displayMatches(data);
+}
+
+async function displayMatches(data) {
+    for (const match of data) {
+        const para = document.createElement("p");
+        para.id = String(match.id);
+        document.getElementById("results").appendChild = data;
+    }
+
+    }
 
 
 
@@ -80,3 +97,5 @@ async function  myAlert(e) {
     await createNewMatch ();
 }
 }
+
+

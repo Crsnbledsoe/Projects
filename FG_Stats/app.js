@@ -70,6 +70,18 @@ app.post('/submit-match', ( req, res) => {
    }
 })
 
+app.get(`/match-Display`, (req, res) => {
+   try {
+  const matchPrep = db.prepare (`SELECT * FROM matches`);
+  const displayMatch = matchPrep.all();
+  res.json(displayMatch);
+   } catch (err) {
+      console.error(`Error retrieving/displaying match data`, err);
+      res.status(500).send(`An error occured while retrieving/storing match data`);
+      return;
+   }
+})
+
 //404
 app.use((req, res) => {
     res.status(404).sendFile('./HTML/404.html', {root: __dirname})
