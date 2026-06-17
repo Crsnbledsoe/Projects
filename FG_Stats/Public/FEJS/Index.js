@@ -1,19 +1,19 @@
 //new version of index with server logic
 //linking images of fighters into js
 const fighterImages = { 
-    Ahri: "../images/Ahri_cs.png",
-    Akali: "../images/Akali_cs.png",
-    Blitzcrank: "../images/Blitzcrank_cs.avif",
-    Braum: "../images/Braum_cs.png",
-    Caitlyn: "../images/Caitlyn_cs.png",
-    Darius: "../images/Darius_cs.png",
-    Ekko: "../images/Ekko_cs.png",
-    Illaoi: "../images/Illaoi_cs.png",
-    Jinx: "../images/Jinx_cs.png",
-    Teemo: "../images/Teemo_cs.png",
-    Vi: "../images/Vi_cs.png",
-    Warwick: "../images/Warwick_cs.png",
-    Yasuo: "../images/Yasuo_cs.png"
+    Ahri: "/images/Ahri_cs.png",
+    Akali: "/images/Akali_cs.png",
+    Blitzcrank: "/images/Blitzcrank_cs.png",
+    Braum: "/images/Braum_cs.png",
+    Caitlyn: "/images/Caitlyn_cs.png",
+    Darius: "/images/Darius_cs.png",
+    Ekko: "/images/Ekko_cs.png",
+    Illaoi: "/images/Illaoi_cs.png",
+    Jinx: "/images/Jinx_cs.png",
+    Teemo: "/images/Teemo_cs.png",
+    Vi: "/images/Vi_cs.png",
+    Warwick: "/images/Warwick_cs.png",
+    Yasuo: "/images/Yasuo_cs.png"
 }
 
 
@@ -45,8 +45,38 @@ async function pageReloaded() {
 async function displayMatches(data) {
     for (const match of data) {
         const para = document.createElement("p");
+        para.textContent = `${match.result} | ${match.fighter1} & ${match.fighter2} VS ${match.oppfighter1}, ${match.oppfighter2}`;
         para.id = String(match.id);
-        document.getElementById("results").appendChild = data;
+
+        const fighter1Image = document.createElement("img")
+        fighter1Image.src = fighterImages[match.fighter1];
+        fighter1Image.alt = match.fighter1;
+        fighter1Image.style.width = "100px";
+
+        const fighter2Image = document.createElement("img");
+        fighter2Image.src = fighterImages[match.fighter2];
+        fighter2Image.alt = match.fighter2;
+        fighter2Image.style.width = "100px";
+
+        const oppfighter1Image = document.createElement("img");
+        oppfighter1Image.src = fighterImages[match.oppfighter1];
+        oppfighter1Image.alt = match.oppfighter1;
+        oppfighter1Image.style.width = "100px"
+
+        const oppfighter2Image = document.createElement("img");
+        oppfighter2Image.src = fighterImages[match.oppfighter2];
+        oppfighter2Image.alt = match.oppfighter2;
+        oppfighter2Image.style.width = "100px"
+
+        para.appendChild(fighter1Image);
+        para.appendChild(document.createTextNode(`&`));
+        para.appendChild(fighter2Image);
+        para.appendChild(document.createTextNode("vs"))
+        para.appendChild(oppfighter1Image);
+        para.appendChild(document.createTextNode("&"));
+        para.appendChild(oppfighter2Image);
+        document.getElementById("results").appendChild(para);
+        console.log(match);
     }
 
     }
