@@ -77,8 +77,9 @@ async function displayMatches(data) {
         para.appendChild(oppfighter2Image);
         document.getElementById("results").appendChild(para);
         console.log(match);
-    }
 
+    }
+        renderCharts(data);
     }
 
 
@@ -127,5 +128,22 @@ async function  myAlert(e) {
     await createNewMatch ();
 }
 }
+function renderCharts(data) {
+const Wins = data.filter(match => match.result === 'Won').length
+const Losses = data.filter(match => match.result === 'Lost').length
 
+new Chart(document.getElementById("myChart"), {
+    type: 'pie',
+    data: {
+        labels: [
+            "Wins","Losses"
+        ],
+        datasets: [{
+            data: [Wins,Losses]
+        }]
+}
 
+}
+);
+document.getElementById("w/l").textContent = `W/L ${Wins}/ ${Losses}`;
+};
