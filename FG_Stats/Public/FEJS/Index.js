@@ -43,6 +43,7 @@ async function pageReloaded() {
 }
 
 async function displayMatches(data) {
+    document.getElementById("results").textContent = "";
     for (const match of data) {
         const para = document.createElement("p");
         para.textContent = `${match.result} | ${match.fighter1} & ${match.fighter2} VS ${match.oppfighter1}, ${match.oppfighter2}`;
@@ -79,7 +80,9 @@ async function displayMatches(data) {
         console.log(match);
 
     }
-        renderCharts(data);
+        const comboCounts = dataForCharts(data);
+        renderCharts(data,comboCounts);
+        console.log(comboCounts);
     }
 
 
@@ -128,11 +131,11 @@ async function  myAlert(e) {
     await createNewMatch ();
 }
 }
-function renderCharts(data) {
-const Wins = data.filter(match => match.result === 'Won').length
-const Losses = data.filter(match => match.result === 'Lost').length
+function renderCharts(data,comboCounts) {
+    const Wins = data.filter(match => match.result === 'Won').length
+    const Losses = data.filter(match => match.result === 'Lost').length
 
-new Chart(document.getElementById("myChart"), {
+    new Chart(document.getElementById("myChart"), {
     type: 'pie',
     data: {
         labels: [
@@ -145,5 +148,42 @@ new Chart(document.getElementById("myChart"), {
 
 }
 );
-document.getElementById("w/l").textContent = `W/L ${Wins}/ ${Losses}`;
+    const comboCountsKeys = Object.keys(comboCounts);
+    const comboCountsValues = Object.values(comboCounts);
+    console.log(comboCountsKeys);
+    console.log(comboCountsValues);
+            
+new Chart(document.getElementById("comboChart"), {
+    type: 'bar',
+    data: {
+        labels:  
+           comboCountsKeys
+        ,
+        datasets: [{
+            data: comboCountsValues
+        }]
+}
+
+}
+);
+
+
+document.getElementById("w/l").textContent = `Wins/Losses   ${Wins}/${Losses}`;
 };
+
+
+function dataForCharts(data) {
+    const comboCounts = {};
+    for (const match of data) {
+        const fighterCombo = [match.fighter1, match.fighter2].sort().join('&')
+        
+            if (fighterCombo in comboCounts) 
+                comboCounts[fighterCombo] += 1
+            else
+                comboCounts[fighterCombo] = 1
+            }
+        console.log(comboCounts)
+        return comboCounts;
+
+
+        };
