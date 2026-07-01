@@ -144,8 +144,10 @@ function renderCharts(data,comboCounts) {
         datasets: [{
             data: [Wins,Losses]
         }]
-}
-
+},
+    options: {
+        maintainAspectRatio: false
+    }
 }
 );
     const comboCountsKeys = Object.keys(comboCounts);
