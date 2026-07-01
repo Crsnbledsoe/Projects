@@ -163,10 +163,16 @@ new Chart(document.getElementById("comboChart"), {
            comboCountsKeys
         ,
         datasets: [{
-            label: "Times Used",
             data: comboCountsValues
         }]
-}
+},
+    options:{
+        plugins:{
+            legend:{
+                display: false
+            }
+        }
+    }
 
 }
 );
