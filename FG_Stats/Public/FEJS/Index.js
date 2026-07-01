@@ -132,6 +132,7 @@ async function  myAlert(e) {
 }
 }
 function renderCharts(data,comboCounts) {
+    console.log("renderng carts");
     const Wins = data.filter(match => match.result === 'Won').length
     const Losses = data.filter(match => match.result === 'Lost').length
 
@@ -162,6 +163,7 @@ new Chart(document.getElementById("comboChart"), {
            comboCountsKeys
         ,
         datasets: [{
+            label: "Times Used",
             data: comboCountsValues
         }]
 }

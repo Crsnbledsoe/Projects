@@ -36,8 +36,8 @@ p.wl {
 .chart-container {
     position: relative;
 
-    width: 50hv;
-    height: 50hv;
+    width: 50hvh;
+    height: 50vh;
     margin: auto;
 }
 
