@@ -132,7 +132,7 @@ async function  myAlert(e) {
 }
 }
 function renderCharts(data,comboCounts) {
-    console.log("renderng carts");
+    console.log("rendering carts");
     const Wins = data.filter(match => match.result === 'Won').length
     const Losses = data.filter(match => match.result === 'Lost').length
 
