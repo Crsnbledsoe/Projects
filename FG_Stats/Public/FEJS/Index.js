@@ -1,4 +1,6 @@
 //new version of index with server logic
+
+
 //linking images of fighters into js
 const fighterImages = { 
     Ahri: "/images/Ahri_cs.png",
@@ -10,8 +12,10 @@ const fighterImages = {
     Ekko: "/images/Ekko_cs.png",
     Illaoi: "/images/Illaoi_cs.png",
     Jinx: "/images/Jinx_cs.png",
+    Senna: "/images/Senna_cs.webp",
     Teemo: "/images/Teemo_cs.png",
-    Vi: "/images/Vi_cs.png",
+    Thresh:" /images/Thresh_cs.webp",
+    Vi:" /images/Vi_cs.png",
     Warwick: "/images/Warwick_cs.png",
     Yasuo: "/images/Yasuo_cs.png"
 }
@@ -32,14 +36,20 @@ document.getElementById("saveBtn").addEventListener("click", myAlert);
 
 
 //adds listener to run loadMatches func when page is loaded/reloaded
-document.addEventListener("DOMContentLoaded", pageReloaded);
+document.addEventListener("DOMContentLoaded", initPage);
 
+//function that calls any functions that need to run when the page is loaded/reloaded
+function initPage(){
+    pageReloaded();
+    oppFighterData();
+}
 async function pageReloaded() {
     const response = await fetch(`match-Display`, {
         method: "GET"
     })
         const data = await response.json();
         displayMatches(data);
+
 }
 
 async function displayMatches(data) {
@@ -85,7 +95,12 @@ async function displayMatches(data) {
         console.log(comboCounts);
     }
 
-
+async function oppFighterData(){
+    const response = fetch(`oppFighterData`, {
+method: "GET"
+})
+    const oppFighterData = (await response).json();
+}
 
 /*adds listener for a click on the results box and then runs deleteMatch func
 document.getElementById("results").addEventListener("click", deleteMatch);*/
@@ -114,7 +129,7 @@ document.getElementById("results").addEventListener("click", deleteMatch);*/
 //loads previously saved matches, creates new match, pushes new match to the matches array, and then runs displayMatches to updated stats on screen 
 async function  myAlert(e) {
     e.preventDefault();
-    //Loads any existing matches saved in local storage or creates a new/empty array titled 'matches'
+    //Loads any existing matches saved in storage or creates a new/empty array titled 'matches'
     if (result.value == 'Blank') {
         alert("Please select an option before continuing.");
     }

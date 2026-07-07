@@ -4,7 +4,7 @@ color: rgb(204, 245, 100);
 }
 
 .results {
-width: 50%;
+width: 700px;
 padding: 10px;
 text-align: center;
 background-color: blue;
@@ -36,11 +36,13 @@ p.wl {
 .chart-container {
     position: relative;
 
-    width: 50hvh;
-    height: 50vh;
+    width: 400px;
+    height: 400px;
     margin: auto;
 }
-
+.layout {
+    display: flex;
+}
 .nav {
     color: purple;
 }

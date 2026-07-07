@@ -28,35 +28,39 @@
             <option value="Blank"></option>
             <option value="Ahri">Ahri</option>
             <option value="Akali">Akali</option>
-            <option value="Caitlyn">Caitlyn</option>
-            <option value="Yasuo">Yasuo</option>
-            <option value="Ekko">Ekko</option>
-            <option value="Warwick">Warwick</option>
-            <option value="Teemo">Teemo</option>
-            <option value="Jinx">Jinx</option>
-            <option value="Braum">Braum</option> 
-            <option value="Illaoi">Illaoi</option>
-            <option value="Vi">Vi</option>
             <option value="Blitzcrank">Blitzcrank</option>
+            <option value="Braum">Braum</option> 
+            <option value="Caitlyn">Caitlyn</option>
             <option value="Darius">Darius</option>
+            <option value="Ekko">Ekko</option>
+            <option value="Illaoi">Illaoi</option>
+            <option value="Jinx">Jinx</option>
+            <option value="Senna">Senna</option>
+            <option value="Teemo">Teemo</option>
+            <option valud="Threwsh">Thresh</option>
+            <option value="Vi">Vi</option>
+            <option value="Warwick">Warwick</option>
+            <option value="Yasuo">Yasuo</option>
         </select>
 
          <label for="fighter2">Choose Second Fighter</label>
         <select name= "fighter2" id= "fighter2">
             <option value="Blank"></option>
             <option value="Ahri">Ahri</option>
-             <option value="Akali">Akali</option>
-            <option value="Caitlyn">Caitlyn</option>
-            <option value="Yasuo">Yasuo</option>
-            <option value="Ekko">Ekko</option>
-            <option value="Warwick">Warwick</option>
-            <option value="Teemo">Teemo</option>
-            <option value="Jinx">Jinx</option>
-            <option value="Braum">Braum</option> 
-            <option value="Illaoi">Illaoi</option>
-            <option value="Vi">Vi</option>
+            <option value="Akali">Akali</option>
             <option value="Blitzcrank">Blitzcrank</option>
+            <option value="Braum">Braum</option> 
+            <option value="Caitlyn">Caitlyn</option>
             <option value="Darius">Darius</option>
+            <option value="Ekko">Ekko</option>
+            <option value="Illaoi">Illaoi</option>
+            <option value="Jinx">Jinx</option>
+            <option value="Senna">Senna</option>
+            <option value="Teemo">Teemo</option>
+            <option valud="Threwsh">Thresh</option>
+            <option value="Vi">Vi</option>
+            <option value="Warwick">Warwick</option>
+            <option value="Yasuo">Yasuo</option>
          </select>
 
 <label for="oppfighter1">Choose Opponent Point Fighter</label>
@@ -71,7 +75,9 @@
             <option value="Ekko">Ekko</option>
             <option value="Illaoi">Illaoi</option>
             <option value="Jinx">Jinx</option>
+            <option value="Senna">Senna</option>
             <option value="Teemo">Teemo</option>
+            <option valud="Threwsh">Thresh</option>
             <option value="Vi">Vi</option>
             <option value="Warwick">Warwick</option>
             <option value="Yasuo">Yasuo</option>
@@ -80,7 +86,7 @@
 
         <label for="oppfighter2">Choose Opponent Point Fighter</label>
         <select name= "oppfighter2" id= "oppfighter2">
-            <option value="Blank"></option>
+          <option value="Blank"></option>
             <option value="Ahri">Ahri</option>
             <option value="Akali">Akali</option>
             <option value="Blitzcrank">Blitzcrank</option>
@@ -90,7 +96,9 @@
             <option value="Ekko">Ekko</option>
             <option value="Illaoi">Illaoi</option>
             <option value="Jinx">Jinx</option>
+            <option value="Senna">Senna</option>
             <option value="Teemo">Teemo</option>
+            <option valud="Threwsh">Thresh</option>
             <option value="Vi">Vi</option>
             <option value="Warwick">Warwick</option>
             <option value="Yasuo">Yasuo</option>
@@ -99,10 +107,11 @@
 
          <button id="saveBtn">Save Match</button>
         </form>
+    <div class="layout">
         <div class="results" id="results"></div>
 
 <div class="chart-container">
-  <canvas id="myChart" width="50vh" height="50vh"></canvas>
+  <canvas id="myChart"></canvas>
 <p class="wl" id="w/l"></p>
             <h2 style="text-align:center">Most Used Fighter Combo</h2>
             <p id="comboLabel" class="chart-label"></p>
@@ -111,6 +120,7 @@
             <h2>Opponent Combo I Lose To Most</h2>
             <p id="lostToLabel" class="chart-label"></p>
             <canvas id="lostToChart"></canvas>
+        </div>
         </div>
     </main>
      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
