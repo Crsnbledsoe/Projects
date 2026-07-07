@@ -4,13 +4,10 @@ color: rgb(204, 245, 100);
 }
 
 .results {
-width: 700px;
+width: 650px;
 padding: 10px;
 text-align: center;
 background-color: blue;
-
-display: flex;
-flex-direction: column ;
 gap: 6px;
 
 }
@@ -34,12 +31,13 @@ p.wl {
 }
 
 .chart-container {
-    position: relative;
+    position: top;
 
     width: 400px;
     height: 400px;
-    margin: auto;
+    margin: 10px;
 }
+    
 .layout {
     display: flex;
 }
