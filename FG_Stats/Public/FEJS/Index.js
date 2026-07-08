@@ -96,11 +96,21 @@ async function displayMatches(data) {
     }
 
 async function oppFighterData(){
-    const response = fetch(`oppFighterData`, {
+    const response = await fetch(`oppFighterData`, {
 method: "GET"
 })
-    const oppFighterData = (await response).json();
-    console.log(oppFighterData);
+    const data = await response.json();
+    console.log('Value of data:', data);
+    console.log('Type of data:', typeof data);
+    const fightersLostTo = {}
+        for (const match of data) {
+            oppFighterCombo = [match.oppfighter1, match.oppfighter2].sort().join('&')
+                if (oppFighterCombo in fightersLostTo)
+                    fightersLostTo[oppFighterCombo] =+1 
+                else 
+                    fightersLostTo[oppFighterCombo] = 1;
+        }
+        console.log(fightersLostTo);
 }
 
 /*adds listener for a click on the results box and then runs deleteMatch func
@@ -199,6 +209,8 @@ document.getElementById("w/l").textContent = `Wins/Losses   ${Wins}/${Losses}`;
 
 
 function dataForCharts(data) {
+    console.log('Value of data:', data);
+    console.log('Type of data:', typeof data);
     const comboCounts = {};
     for (const match of data) {
         const fighterCombo = [match.fighter1, match.fighter2].sort().join('&')
