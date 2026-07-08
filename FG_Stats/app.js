@@ -77,10 +77,26 @@ app.get(`/match-Display`, (req, res) => {
   res.json(displayMatch);
    } catch (err) {
       console.error(`Error retrieving/displaying match data`, err);
-      res.status(500).send(`An error occured while retrieving/storing match data`);
+      res.status(500).send(`An error occurred while retrieving/storing match data`);
       return;
    }
 })
+
+//filtering request for oppoenet fighter data
+app.get(`/oppFighterData`, (req, res) => {
+   try {
+      const oppFighterPrep = db.prepare (`SELECT id, oppfighter1, oppfighter2, result 
+         FROM matches
+         WHERE result = 'Lost'`);
+      const oppFighterData = oppFighterPrep.all();
+      res.json(oppFighterData)
+      } catch (err) {
+         console.error(`Error retrieving/displaying opponent Fighter Data`, err);
+         res.status(500).send(``)
+         return;
+      }
+})
+
 
 //404
 app.use((req, res) => {

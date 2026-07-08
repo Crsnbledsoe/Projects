@@ -100,6 +100,7 @@ async function oppFighterData(){
 method: "GET"
 })
     const oppFighterData = (await response).json();
+    console.log(oppFighterData);
 }
 
 /*adds listener for a click on the results box and then runs deleteMatch func
