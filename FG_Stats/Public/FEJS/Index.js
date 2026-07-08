@@ -213,7 +213,7 @@ function dataForCharts(data) {
     console.log('Type of data:', typeof data);
     const comboCounts = {};
     for (const match of data) {
-        const fighterCombo = [match.fighter1, match.fighter2].sort().join('&')
+        const fighterCombo = [match.fighter1, match.fighter2].sort().join(' & ')
         
             if (fighterCombo in comboCounts) 
                 comboCounts[fighterCombo] += 1
