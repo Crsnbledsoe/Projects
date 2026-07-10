@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", initPage);
 //function that calls any functions that need to run when the page is loaded/reloaded
 async function initPage(){
     pageReloaded();
-    await oppFighterData(fightersLostTo);
+    await oppFighterData();
 }
 async function pageReloaded() {
     const response = await fetch(`match-Display`, {
@@ -91,8 +91,11 @@ async function displayMatches(data) {
 
     }
         const comboCounts = dataForCharts(data);
-        renderCharts(data,comboCounts);
+        wLChart(data);
+        myFightersChart(comboCounts);
         console.log(comboCounts);
+        oppFightersChart(fightersLostTo);
+
     }
 
 async function oppFighterData(){
@@ -162,7 +165,7 @@ async function  myAlert(e) {
 }
 }
 
-function renderCharts(data,comboCounts,fightersLostTo) {
+function wLChart(data) {
     console.log("rendering carts");
     const Wins = data.filter(match => match.result === 'Won').length
     const Losses = data.filter(match => match.result === 'Lost').length
@@ -179,9 +182,15 @@ function renderCharts(data,comboCounts,fightersLostTo) {
 },
     options: {
         maintainAspectRatio: false
-    }
+            }
+        }
+    );
+    document.getElementById("w/l").textContent = `Wins/Losses   ${Wins}/${Losses}`;
+
 }
-);
+
+
+function myFightersChart(comboCounts){
     const comboCountsKeys = Object.keys(comboCounts);
     const comboCountsValues = Object.values(comboCounts);
     console.log(comboCountsKeys);
@@ -207,9 +216,9 @@ new Chart(document.getElementById("comboChart"), {
 
 }
 );
+}
 
-
-document.getElementById("w/l").textContent = `Wins/Losses   ${Wins}/${Losses}`;
+function oppFightersChart(fightersLostTo){ 
 if(fightersLostTo)
     {fightersLostToKeys = Object.keys(fightersLostTo);
     fightersLostToValues = Object.values(fightersLostTo);
