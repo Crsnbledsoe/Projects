@@ -40,19 +40,19 @@ document.addEventListener("DOMContentLoaded", initPage);
 
 //function that calls any functions that need to run when the page is loaded/reloaded
 async function initPage(){
-    pageReloaded();
-    await oppFighterData();
+    const fightersLostTo = await oppFighterData();
+    await pageReloaded(fightersLostTo);
 }
-async function pageReloaded() {
+async function pageReloaded(fightersLostTo) {
     const response = await fetch(`match-Display`, {
         method: "GET"
     })
         const data = await response.json();
-        displayMatches(data);
+        await displayMatches(data,fightersLostTo);
 
 }
 
-async function displayMatches(data) {
+function displayMatches(data, fightersLostTo) {
     document.getElementById("results").textContent = "";
     for (const match of data) {
         const para = document.createElement("p");
@@ -220,10 +220,10 @@ new Chart(document.getElementById("comboChart"), {
 
 function oppFightersChart(fightersLostTo){ 
 if(fightersLostTo)
-    {fightersLostToKeys = Object.keys(fightersLostTo);
-    fightersLostToValues = Object.values(fightersLostTo);
-    }
-new Chart(document.getElementById("LostToChart"), {
+    {const fightersLostToKeys = Object.keys(fightersLostTo);
+    const fightersLostToValues = Object.values(fightersLostTo);
+    
+new Chart(document.getElementById("lostToChart"), {
     type: 'bar',
     data: {
         labels: 
@@ -236,7 +236,7 @@ new Chart(document.getElementById("LostToChart"), {
     }
 }
 )
-
+    }
 };
 
 
