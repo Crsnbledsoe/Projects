@@ -39,9 +39,9 @@ document.getElementById("saveBtn").addEventListener("click", myAlert);
 document.addEventListener("DOMContentLoaded", initPage);
 
 //function that calls any functions that need to run when the page is loaded/reloaded
-function initPage(){
+async function initPage(){
     pageReloaded();
-    oppFighterData();
+    await oppFighterData(fightersLostTo);
 }
 async function pageReloaded() {
     const response = await fetch(`match-Display`, {
@@ -106,11 +106,15 @@ method: "GET"
         for (const match of data) {
             oppFighterCombo = [match.oppfighter1, match.oppfighter2].sort().join('&')
                 if (oppFighterCombo in fightersLostTo)
-                    fightersLostTo[oppFighterCombo] =+1 
+                    fightersLostTo[oppFighterCombo] += 1 
                 else 
                     fightersLostTo[oppFighterCombo] = 1;
         }
-        console.log(fightersLostTo);
+    console.log(fightersLostTo);
+    console.log('Type of fightersLostTo:', typeof fightersLostTo);
+
+    return fightersLostTo;
+   
 }
 
 /*adds listener for a click on the results box and then runs deleteMatch func
@@ -157,7 +161,8 @@ async function  myAlert(e) {
     await createNewMatch ();
 }
 }
-function renderCharts(data,comboCounts) {
+
+function renderCharts(data,comboCounts,fightersLostTo) {
     console.log("rendering carts");
     const Wins = data.filter(match => match.result === 'Won').length
     const Losses = data.filter(match => match.result === 'Lost').length
@@ -205,6 +210,24 @@ new Chart(document.getElementById("comboChart"), {
 
 
 document.getElementById("w/l").textContent = `Wins/Losses   ${Wins}/${Losses}`;
+if(fightersLostTo)
+    {fightersLostToKeys = Object.keys(fightersLostTo);
+    fightersLostToValues = Object.values(fightersLostTo);
+    }
+new Chart(document.getElementById("LostToChart"), {
+    type: 'bar',
+    data: {
+        labels: 
+        fightersLostToKeys
+
+            ,
+        datasets:[{
+            data: fightersLostToValues,
+        }]
+    }
+}
+)
+
 };
 
 
@@ -221,6 +244,8 @@ function dataForCharts(data) {
                 comboCounts[fighterCombo] = 1
             }
         console.log(comboCounts)
+        console.log('Type of comboCounts:', typeof comboCounts);
+
         return comboCounts;
 
 
