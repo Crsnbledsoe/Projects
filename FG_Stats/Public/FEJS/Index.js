@@ -22,12 +22,12 @@ const fighterImages = {
 
 
 
-//pull fighters and win/lose options selected by user from HTML for use/manipulation/storage in JS
+//link variables in js to the elements in html with same name IDs 
 const fighter1select = document.getElementById("fighter1");
 const fighter2select = document.getElementById("fighter2");
 const oppfighter1select = document.getElementById("oppfighter1");
 const oppfighter2select = document.getElementById("oppfighter2");
-const win = document.getElementById("win");
+const result = document.getElementById("result");
 
 
 //adds listener to the HTMl element with saveBtn as ID and then runs the JS function myAlert when clicked
@@ -40,18 +40,20 @@ document.addEventListener("DOMContentLoaded", initPage);
 
 //function that calls any functions that need to run when the page is loaded/reloaded
 async function initPage(){
-    const fightersLostTo = await oppFighterData();
+    const fightersLostTo = await oppFighterData(); //sets a variable = result of oppFighterData
     await pageReloaded(fightersLostTo);
-}
+};
+
+//fetches all data from matches table and runs display matches to process and display match results
 async function pageReloaded(fightersLostTo) {
     const response = await fetch(`match-Display`, {
         method: "GET"
     })
         const data = await response.json();
-        await displayMatches(data,fightersLostTo);
+        displayMatches(data,fightersLostTo);
+    ;}
 
-}
-
+//takes all match data from fetch call in pageReloaded and loops through each match turning them into displayed paragraphs
 function displayMatches(data, fightersLostTo) {
     document.getElementById("results").textContent = "";
     for (const match of data) {
@@ -95,9 +97,9 @@ function displayMatches(data, fightersLostTo) {
         myFightersChart(comboCounts);
         console.log(comboCounts);
         oppFightersChart(fightersLostTo);
+};
 
-    }
-
+//fetches only the opponent fighter data for matches that were lost and returns them back to displayMatches to push into charts
 async function oppFighterData(){
     const response = await fetch(`oppFighterData`, {
 method: "GET"
@@ -123,6 +125,7 @@ method: "GET"
 /*adds listener for a click on the results box and then runs deleteMatch func
 document.getElementById("results").addEventListener("click", deleteMatch);*/
 
+//stores values from form into object of key value pairs which are then sent via POST
  async function createNewMatch (){
     const match = {
         result: result.value,
@@ -144,7 +147,7 @@ document.getElementById("results").addEventListener("click", deleteMatch);*/
 
 
 
-//loads previously saved matches, creates new match, pushes new match to the matches array, and then runs displayMatches to updated stats on screen 
+//runs when click on save button is heard, prevents new match from being created without necessary info
 async function  myAlert(e) {
     e.preventDefault();
     //Loads any existing matches saved in storage or creates a new/empty array titled 'matches'
