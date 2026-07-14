@@ -55,7 +55,7 @@ async function pageReloaded(fightersLostTo) {
 
 //takes all match data from fetch call in pageReloaded and loops through each match turning them into displayed paragraphs
 function displayMatches(data, fightersLostTo) {
-    document.getElementById("results").textContent = "";
+    document.getElementById("results");
     for (const match of data) {
         const para = document.createElement("p");
         para.textContent = `${match.result} | ${match.fighter1} & ${match.fighter2} VS ${match.oppfighter1}, ${match.oppfighter2}`;
@@ -90,6 +90,10 @@ function displayMatches(data, fightersLostTo) {
         para.appendChild(oppfighter2Image);
         document.getElementById("results").appendChild(para);
         console.log(match);
+
+        const delB = document.createElement("button");
+        delB.textContent = 'Delete';
+        para.appendChild(delB);
 
     }
         const comboCounts = dataForCharts(data);
