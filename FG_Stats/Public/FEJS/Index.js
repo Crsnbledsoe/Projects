@@ -28,6 +28,8 @@ const fighter2select = document.getElementById("fighter2");
 const oppfighter1select = document.getElementById("oppfighter1");
 const oppfighter2select = document.getElementById("oppfighter2");
 const result = document.getElementById("result");
+const date = new Date().getTime();
+
 
 
 //adds listener to the HTMl element with saveBtn as ID and then runs the JS function myAlert when clicked
@@ -93,7 +95,9 @@ function displayMatches(data, fightersLostTo) {
 
         const delB = document.createElement("button");
         delB.textContent = 'Delete';
-        para.appendChild(delB);
+        delB.id = para.id
+        para.appendChild(delB)
+        console.log(delB);
 
     }
         const comboCounts = dataForCharts(data);
@@ -126,8 +130,8 @@ method: "GET"
    
 }
 
-/*adds listener for a click on the results box and then runs deleteMatch func
-document.getElementById("results").addEventListener("click", deleteMatch);*/
+//adds listener for a click on the results box and then runs deleteMatch func
+document.getElementById("results").addEventListener("click", deleteMatch);
 
 //stores values from form into object of key value pairs which are then sent via POST
  async function createNewMatch (){
@@ -137,6 +141,7 @@ document.getElementById("results").addEventListener("click", deleteMatch);*/
         fighter2: fighter2select.value,
         oppfighter1: oppfighter1select.value,
         oppfighter2: oppfighter2select.value,
+        date: date.value,
     }; 
     const response = await fetch(`/submit-match`, {
         method: "POST",
@@ -266,3 +271,7 @@ function dataForCharts(data) {
 
 
         };
+
+async function deleteMatch(e){
+
+};

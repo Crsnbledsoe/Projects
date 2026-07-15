@@ -29,6 +29,9 @@ db.exec(`CREATE TABLE IF NOT EXISTS matches (
    event_timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
 )`);
 
+//db.exec(`ALTER TABLE matches
+//ADD COLUMN uniqueId number`);
+
 //get static files
 app.use(express.static('Public'));
 
