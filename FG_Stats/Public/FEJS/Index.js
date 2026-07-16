@@ -160,6 +160,8 @@ method: "GET"
         body: JSON.stringify(match),
     })
     alert("Match Saved!");
+    const fightersLostTo = await oppFighterData();
+    await pageReloaded(fightersLostTo);
 }
     ;
 
@@ -305,21 +307,26 @@ async function deleteMatch(e) {
     try {
         const response = await fetch(`/match-Delete/${id}`, {
             method: "DELETE"
+            
     
-    });
-
+    })
+    alert("Match Deleted")
+;
     if(!response.ok) {
         console.error("Delete Match failed", response.status);
         return;
     }
-
+    if (response.ok) {
+         alert("Match Deleted");
+    };
     //refresh display matches if deletion is succesful
     console.log(`refreshing matches`);
     const fightersLostTo = await oppFighterData();
     await pageReloaded(fightersLostTo);
+
     }
     catch (err) {
                 console.error(`Error deleting match`, err)
                 return;
             }
-    };
+            };
