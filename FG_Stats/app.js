@@ -100,6 +100,26 @@ app.get(`/oppFighterData`, (req, res) => {
       }
 })
 
+//route for handling deletion of single match
+app.delete('/match-Delete/:id', (req, res) =>{
+   console.log(`request recievedadsf`)
+   try {
+      console.log(`delete request recieved`)
+      const id = Number(req.params.id)
+      const deleteMatch = db.prepare(`DELETE FROM matches
+      WHERE id = ?`);
+      const result = deleteMatch.run(id);
+      if (result.changes === 0) {
+         return res.status(404).json({ error: `Match not found`});
+      }
+
+      res.json({success: true});
+   }
+   catch (err) {
+      console.error(`error delting match`,err);
+      res.status(500).json({error: err.message });   
+   }
+})
 
 //404
 app.use((req, res) => {

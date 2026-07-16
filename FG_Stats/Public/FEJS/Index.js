@@ -30,7 +30,8 @@ const oppfighter2select = document.getElementById("oppfighter2");
 const result = document.getElementById("result");
 const date = new Date().getTime();
 
-
+//adds listener for a click on the results box and then runs deleteMatch func
+document.getElementById("results").addEventListener("click", deleteMatch);
 
 //adds listener to the HTMl element with saveBtn as ID and then runs the JS function myAlert when clicked
 document.getElementById("saveBtn").addEventListener("click", myAlert);
@@ -57,7 +58,9 @@ async function pageReloaded(fightersLostTo) {
 
 //takes all match data from fetch call in pageReloaded and loops through each match turning them into displayed paragraphs
 function displayMatches(data, fightersLostTo) {
-    document.getElementById("results");
+    results = document.getElementById("results");
+    results.textContent = ``
+    document.getElementById("results")
     for (const match of data) {
         const para = document.createElement("p");
         para.textContent = `${match.result} | ${match.fighter1} & ${match.fighter2} VS ${match.oppfighter1}, ${match.oppfighter2}`;
@@ -95,7 +98,9 @@ function displayMatches(data, fightersLostTo) {
 
         const delB = document.createElement("button");
         delB.textContent = 'Delete';
-        delB.id = para.id
+        delB.id = para.id;
+        delB.dataset.id = match.id;
+        delB.classList.add("delB")
         para.appendChild(delB)
         console.log(delB);
 
@@ -130,8 +135,7 @@ method: "GET"
    
 }
 
-//adds listener for a click on the results box and then runs deleteMatch func
-document.getElementById("results").addEventListener("click", deleteMatch);
+
 
 //stores values from form into object of key value pairs which are then sent via POST
  async function createNewMatch (){
@@ -272,6 +276,34 @@ function dataForCharts(data) {
 
         };
 
-async function deleteMatch(e){
+async function deleteMatch(e) {
+    console.log(`/delete button activated`);
+    const button = e.target.closest(".delB")
+    if (!button)
+        return;
 
-};
+    const id = button.dataset.id;
+    console.log(`is an id`)
+    if (!id) return;
+            
+    try {
+        const response = await fetch(`/match-Delete/${id}`, {
+            method: "DELETE"
+    
+    });
+
+    if(!response.ok) {
+        console.error("Delete Match failed", response.status);
+        return;
+    }
+
+    //refresh display matches if deletion is succesful
+    console.log(`refreshing matches`);
+    const fightersLostTo = await oppFighterData();
+    await pageReloaded(fightersLostTo);
+    }
+    catch (err) {
+                console.error(`Error deleting match`, err)
+                return;
+            }
+    };
