@@ -20,7 +20,9 @@ const fighterImages = {
     Yasuo: "/images/Yasuo_cs.png"
 }
 
-
+let winLoseChart;
+let fighterCombo;
+let toughestFighterCombo;
 
 //link variables in js to the elements in html with same name IDs 
 const fighter1select = document.getElementById("fighter1");
@@ -55,6 +57,10 @@ async function pageReloaded(fightersLostTo) {
         const data = await response.json();
         displayMatches(data,fightersLostTo);
     ;}
+
+    
+
+
 
 //takes all match data from fetch call in pageReloaded and loops through each match turning them into displayed paragraphs
 function displayMatches(data, fightersLostTo) {
@@ -108,7 +114,6 @@ function displayMatches(data, fightersLostTo) {
         const comboCounts = dataForCharts(data);
         wLChart(data);
         myFightersChart(comboCounts);
-        console.log(comboCounts);
         oppFightersChart(fightersLostTo);
 };
 
@@ -181,12 +186,17 @@ async function  myAlert(e) {
 }
 }
 
+
 function wLChart(data) {
     console.log("rendering carts");
     const Wins = data.filter(match => match.result === 'Won').length
     const Losses = data.filter(match => match.result === 'Lost').length
+    console.log('Value of myChart:', myChart);
 
-    new Chart(document.getElementById("myChart"), {
+       if (winLoseChart) {
+        winLoseChart.destroy();
+       }
+   winLoseChart = new Chart(document.getElementById("myChart"), {
     type: 'pie',
     data: {
         labels: [
@@ -211,8 +221,12 @@ function myFightersChart(comboCounts){
     const comboCountsValues = Object.values(comboCounts);
     console.log(comboCountsKeys);
     console.log(comboCountsValues);
-            
-new Chart(document.getElementById("comboChart"), {
+
+    if (fighterCombo) {
+        fighterCombo.destroy();
+    }
+        
+fighterCombo = new Chart(document.getElementById("comboChart"), {
     type: 'bar',
     data: {
         labels:  
@@ -238,8 +252,10 @@ function oppFightersChart(fightersLostTo){
 if(fightersLostTo)
     {const fightersLostToKeys = Object.keys(fightersLostTo);
     const fightersLostToValues = Object.values(fightersLostTo);
-    
-new Chart(document.getElementById("lostToChart"), {
+if (toughestFighterCombo) {
+    toughestFighterCombo.destroy();
+}
+toughestFighterCombo = new Chart(document.getElementById("lostToChart"), {
     type: 'bar',
     data: {
         labels: 
