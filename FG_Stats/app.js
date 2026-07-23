@@ -75,7 +75,8 @@ app.post('/submit-match', ( req, res) => {
 
 app.get(`/match-Display`, (req, res) => {
    try {
-  const matchPrep = db.prepare (`SELECT * FROM matches`);
+  const matchPrep = db.prepare (`SELECT * FROM matches
+   LIMIT 10`);
   const displayMatch = matchPrep.all();
   res.json(displayMatch);
    } catch (err) {
@@ -121,10 +122,28 @@ app.delete('/match-Delete/:id', (req, res) =>{
    }
 })
 
+
+app.get('/loadMore', (req, res) => {
+   try{
+   console.log("LoadMore recieved");
+  const offset = Number(req.query.offset)
+   console.log(offset);
+   }
+   catch(err){
+      console.error('error loading more matches');
+      res.status(500).json({error: err.message});
+   }
+   
+}
+)
+
+
 //404
 app.use((req, res) => {
     res.status(404).sendFile('./HTML/404.html', {root: __dirname})
 })
+
+
 //app.get('/2XKOT', (req, res) => {
    // res.send('<p>Home Page</p>') 
 //});

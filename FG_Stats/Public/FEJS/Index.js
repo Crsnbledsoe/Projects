@@ -24,6 +24,9 @@ let winLoseChart;
 let fighterCombo;
 let toughestFighterCombo;
 
+
+let pageLoad = 0
+
 //link variables in js to the elements in html with same name IDs 
 const fighter1select = document.getElementById("fighter1");
 const fighter2select = document.getElementById("fighter2");
@@ -43,11 +46,29 @@ document.getElementById("saveBtn").addEventListener("click", myAlert);
 //adds listener to run loadMatches func when page is loaded/reloaded
 document.addEventListener("DOMContentLoaded", initPage);
 
+
+document.getElementById("loadMore").addEventListener("click", moreMatches);
+
+
+    //const response = await fetch(`/match-Delete/${id}`, {
+
+
 //function that calls any functions that need to run when the page is loaded/reloaded
 async function initPage(){
     const fightersLostTo = await oppFighterData(); //sets a variable = result of oppFighterData
     await pageReloaded(fightersLostTo);
+    console.log(pageLoad);
 };
+
+async function moreMatches(e) {
+    console.log("moreMatches function started");
+    pageLoad += 10;
+    console.log(pageLoad)
+    const response = await fetch(`/loadMore/?offset=${pageLoad}`, {
+        method: "GET",
+})
+};
+
 
 //fetches all data from matches table and runs display matches to process and display match results
 async function pageReloaded(fightersLostTo) {
