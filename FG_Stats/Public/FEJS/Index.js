@@ -65,8 +65,12 @@ async function moreMatches(e) {
     pageLoad += 10;
     console.log(pageLoad)
     const response = await fetch(`/loadMore/?offset=${pageLoad}`, {
-        method: "GET",
+        method: "GET",   
 })
+    const  data = await response.json();
+    console.log('Value of data:', data);
+    console.log('Type of data:', typeof data);
+    displayMoreMatches(data);
 };
 
 
@@ -77,6 +81,8 @@ async function pageReloaded(fightersLostTo) {
     })
         const data = await response.json();
         displayMatches(data,fightersLostTo);
+    
+    
     ;}
 
     
@@ -87,6 +93,60 @@ async function pageReloaded(fightersLostTo) {
 function displayMatches(data, fightersLostTo) {
     results = document.getElementById("results");
     results.textContent = ``
+    document.getElementById("results")
+    for (const match of data) {
+        const para = document.createElement("p");
+        para.textContent = `${match.result} | ${match.fighter1} & ${match.fighter2} VS ${match.oppfighter1}, ${match.oppfighter2}`;
+        para.id = String(match.id);
+
+        const fighter1Image = document.createElement("img")
+        fighter1Image.src = fighterImages[match.fighter1];
+        fighter1Image.alt = match.fighter1;
+        fighter1Image.style.width = "100px";
+
+        const fighter2Image = document.createElement("img");
+        fighter2Image.src = fighterImages[match.fighter2];
+        fighter2Image.alt = match.fighter2;
+        fighter2Image.style.width = "100px";
+
+        const oppfighter1Image = document.createElement("img");
+        oppfighter1Image.src = fighterImages[match.oppfighter1];
+        oppfighter1Image.alt = match.oppfighter1;
+        oppfighter1Image.style.width = "100px"
+
+        const oppfighter2Image = document.createElement("img");
+        oppfighter2Image.src = fighterImages[match.oppfighter2];
+        oppfighter2Image.alt = match.oppfighter2;
+        oppfighter2Image.style.width = "100px"
+
+        para.appendChild(fighter1Image);
+        para.appendChild(document.createTextNode(`&`));
+        para.appendChild(fighter2Image);
+        para.appendChild(document.createTextNode("vs"))
+        para.appendChild(oppfighter1Image);
+        para.appendChild(document.createTextNode("&"));
+        para.appendChild(oppfighter2Image);
+        document.getElementById("results").appendChild(para);
+        console.log(match);
+
+        const delB = document.createElement("button");
+        delB.textContent = 'Delete';
+        delB.id = para.id;
+        delB.dataset.id = match.id;
+        delB.classList.add("delB")
+        para.appendChild(delB)
+        console.log(delB);
+
+    }
+        const comboCounts = dataForCharts(data);
+        wLChart(data);
+        myFightersChart(comboCounts);
+        oppFightersChart(fightersLostTo);
+};
+
+//refactor into the displayMatches with an if statement
+function displayMoreMatches(data, fightersLostTo) {
+    results = document.getElementById("results");
     document.getElementById("results")
     for (const match of data) {
         const para = document.createElement("p");

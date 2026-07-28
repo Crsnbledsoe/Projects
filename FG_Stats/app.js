@@ -126,9 +126,16 @@ app.delete('/match-Delete/:id', (req, res) =>{
 app.get('/loadMore', (req, res) => {
    try{
    console.log("LoadMore recieved");
-  const offset = Number(req.query.offset)
+   const offset = Number(req.query.offset)
    console.log(offset);
+   const nextTenMatches = db.prepare(`SELECT id, fighter1, fighter2, oppfighter1, oppfighter2, result
+      FROM matches
+      LIMIT 10
+      OFFSET ?`)
+   const sendNextTenMatches = nextTenMatches.all(offset)
+   res.json(sendNextTenMatches)
    }
+   
    catch(err){
       console.error('error loading more matches');
       res.status(500).json({error: err.message});
