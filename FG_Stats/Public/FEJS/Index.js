@@ -55,8 +55,7 @@ document.getElementById("loadMore").addEventListener("click", moreMatches);
 
 //function that calls any functions that need to run when the page is loaded/reloaded
 async function initPage(){
-    const fightersLostTo = await oppFighterData(); //sets a variable = result of oppFighterData
-    await pageReloaded(fightersLostTo);
+    await pageReloaded();
     console.log(pageLoad);
 };
 
@@ -75,12 +74,12 @@ async function moreMatches(e) {
 
 
 //fetches all data from matches table and runs display matches to process and display match results
-async function pageReloaded(fightersLostTo) {
+async function pageReloaded() {
     const response = await fetch(`match-Display`, {
         method: "GET"
     })
         const data = await response.json();
-        displayMatches(data,fightersLostTo);
+        displayMatches(data);
     
     
     ;}
@@ -90,7 +89,7 @@ async function pageReloaded(fightersLostTo) {
 
 
 //takes all match data from fetch call in pageReloaded and loops through each match turning them into displayed paragraphs
-async function displayMatches(data, fightersLostTo, shouldClear) {
+function displayMatches(data, shouldClear) {
     if (shouldClear) {
     results = document.getElementById("results");
     results.textContent = ``}
@@ -138,13 +137,26 @@ async function displayMatches(data, fightersLostTo, shouldClear) {
         delB.classList.add("delB")
         para.appendChild(delB)
         console.log(delB);
-
+        
     }
+renderCharts();
+};
+
+async function renderCharts(){
+        //console.log(`request sent`);
         const comboCounts = await dataForCharts();
+        response = await fetch(`dataForCharts`, {
+        method: "GET"
+    })
+        const data = await response.json();
+        //console.log('response recieved');
+        const fightersLostTo = await oppFighterData(); //sets a variable = result of oppFighterData
+
         wLChart(data);
         myFightersChart(comboCounts);
         oppFightersChart(fightersLostTo);
 };
+
 
 
 
