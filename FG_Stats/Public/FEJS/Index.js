@@ -70,7 +70,7 @@ async function moreMatches(e) {
     const  data = await response.json();
     console.log('Value of data:', data);
     console.log('Type of data:', typeof data);
-    displayMoreMatches(data);
+    displayMatches(data);
 };
 
 
@@ -90,9 +90,11 @@ async function pageReloaded(fightersLostTo) {
 
 
 //takes all match data from fetch call in pageReloaded and loops through each match turning them into displayed paragraphs
-function displayMatches(data, fightersLostTo) {
+async function displayMatches(data, fightersLostTo, shouldClear) {
+    if (shouldClear) {
     results = document.getElementById("results");
-    results.textContent = ``
+    results.textContent = ``}
+
     document.getElementById("results")
     for (const match of data) {
         const para = document.createElement("p");
@@ -138,65 +140,13 @@ function displayMatches(data, fightersLostTo) {
         console.log(delB);
 
     }
-        const comboCounts = dataForCharts(data);
+        const comboCounts = await dataForCharts();
         wLChart(data);
         myFightersChart(comboCounts);
         oppFightersChart(fightersLostTo);
 };
 
-//refactor into the displayMatches with an if statement
-function displayMoreMatches(data, fightersLostTo) {
-    results = document.getElementById("results");
-    document.getElementById("results")
-    for (const match of data) {
-        const para = document.createElement("p");
-        para.textContent = `${match.result} | ${match.fighter1} & ${match.fighter2} VS ${match.oppfighter1}, ${match.oppfighter2}`;
-        para.id = String(match.id);
 
-        const fighter1Image = document.createElement("img")
-        fighter1Image.src = fighterImages[match.fighter1];
-        fighter1Image.alt = match.fighter1;
-        fighter1Image.style.width = "100px";
-
-        const fighter2Image = document.createElement("img");
-        fighter2Image.src = fighterImages[match.fighter2];
-        fighter2Image.alt = match.fighter2;
-        fighter2Image.style.width = "100px";
-
-        const oppfighter1Image = document.createElement("img");
-        oppfighter1Image.src = fighterImages[match.oppfighter1];
-        oppfighter1Image.alt = match.oppfighter1;
-        oppfighter1Image.style.width = "100px"
-
-        const oppfighter2Image = document.createElement("img");
-        oppfighter2Image.src = fighterImages[match.oppfighter2];
-        oppfighter2Image.alt = match.oppfighter2;
-        oppfighter2Image.style.width = "100px"
-
-        para.appendChild(fighter1Image);
-        para.appendChild(document.createTextNode(`&`));
-        para.appendChild(fighter2Image);
-        para.appendChild(document.createTextNode("vs"))
-        para.appendChild(oppfighter1Image);
-        para.appendChild(document.createTextNode("&"));
-        para.appendChild(oppfighter2Image);
-        document.getElementById("results").appendChild(para);
-        console.log(match);
-
-        const delB = document.createElement("button");
-        delB.textContent = 'Delete';
-        delB.id = para.id;
-        delB.dataset.id = match.id;
-        delB.classList.add("delB")
-        para.appendChild(delB)
-        console.log(delB);
-
-    }
-        const comboCounts = dataForCharts(data);
-        wLChart(data);
-        myFightersChart(comboCounts);
-        oppFightersChart(fightersLostTo);
-};
 
 //fetches only the opponent fighter data for matches that were lost and returns them back to displayMatches to push into charts
 async function oppFighterData(){
@@ -299,9 +249,10 @@ function wLChart(data) {
 }
 
 
-function myFightersChart(comboCounts){
-    const comboCountsKeys = Object.keys(comboCounts);
-    const comboCountsValues = Object.values(comboCounts);
+async function myFightersChart(comboCounts){
+   await console.log(comboCounts);
+    const comboCountsKeys = await Object.keys(comboCounts);
+    const comboCountsValues = await Object.values(comboCounts);
     console.log(comboCountsKeys);
     console.log(comboCountsValues);
 
@@ -355,7 +306,12 @@ toughestFighterCombo = new Chart(document.getElementById("lostToChart"), {
 };
 
 
-function dataForCharts(data) {
+async function dataForCharts() {
+    response = await fetch(`dataForCharts`, {
+        method: "GET"
+    })
+const data = await response.json();
+    
     console.log('Value of data:', data);
     console.log('Type of data:', typeof data);
     const comboCounts = {};
@@ -369,7 +325,6 @@ function dataForCharts(data) {
             }
         console.log(comboCounts)
         console.log('Type of comboCounts:', typeof comboCounts);
-
         return comboCounts;
 
 

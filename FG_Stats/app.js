@@ -86,6 +86,20 @@ app.get(`/match-Display`, (req, res) => {
    }
 })
 
+app.get(`/dataForCharts` , (req, res) => {
+   try{
+      console.log('data for charts request recieved error between this and catch')
+      const DataForChartsPrep = db.prepare (`SELECT * FROM matches`);
+      const myDataForCharts = DataForChartsPrep.all();
+      res.json(myDataForCharts);
+   } catch (err) {
+      console.error(`Error retrieving data required for charts`, err);
+      res.status(500).send(`An error occured while retrieving data for charts`);
+   }
+
+
+})
+
 //filtering request for oppoenet fighter data
 app.get(`/oppFighterData`, (req, res) => {
    try {
