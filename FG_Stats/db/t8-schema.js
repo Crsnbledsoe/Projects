@@ -39,3 +39,11 @@ p2_rounds INTEGER,
 stage_id INTEGER, 
 winner INTEGER
 )`);
+
+
+
+db.exec(`CREATE TABLE IF NOT EXISTS t8players (
+   polaris_id TEXT PRIMARY KEY,
+   user_id INTEGER,
+   username TEXT
+)`);

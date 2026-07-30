@@ -163,6 +163,20 @@ app.get('/loadMore', (req, res) => {
 )
 
 
+
+
+//t8 routes
+/*app.post('/api/t8/fetch', async (req, res) => {
+   try{
+      const beforeParam = Math.floor(Date.now)/1000
+      await fetch('https://wank.wavu.wiki/api/replays/${beforeParam}')
+   }
+})*/
+
+
+
+
+
 //404
 app.use((req, res) => {
     res.status(404).sendFile('./HTML/404.html', {root: __dirname})
