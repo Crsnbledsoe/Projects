@@ -14,3 +14,28 @@ db.exec(`CREATE TABLE IF NOT EXISTS t8ranks (
    points_season2 INTEGER,
    points_season3 INTEGER
 )`);
+
+
+//initialize a table to track matches
+db.exec(`CREATE TABLE IF NOT EXISTS t8matches (
+battle_id TEXT PRIMARY KEY,
+battle_at INTEGER,
+battle_type INTEGER, 
+game_version INTEGER,
+p1_polaris_id TEXT, 
+p1_user_id INTEGER, 
+p1_chara_id INTEGER,
+p1_rank_id INTEGER, 
+p1_rating_before INTEGER, 
+p1_rating_change INTEGER, 
+p1_rounds INTEGER,
+p2_polaris_id TEXT, 
+p2_user_id INTEGER, 
+p2_chara_id INTEGER, 
+p2_rank_id INTEGER, 
+p2_rating_before INTEGER, 
+p2_rating_change INTEGER, 
+p2_rounds INTEGER,
+stage_id INTEGER, 
+winner INTEGER
+)`);
