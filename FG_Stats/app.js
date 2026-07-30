@@ -2,7 +2,6 @@ const express = require('express');
 const fs = require('fs');
 const app = express();
 const morgan = require('morgan');
-const Database = require('better-sqlite3');
 
 app.use(express.urlencoded({
    extended: true,
@@ -10,8 +9,12 @@ app.use(express.urlencoded({
 );
 app.use(express.json())
 
-const db = new Database('stats.db')
 
+const db = require('./db/connection')
+console.log(db);
+
+require('./db/2xko-schema');
+require('./db/t8-schema');
 
 
 
@@ -19,7 +22,8 @@ db.pragma('journal_mode = WAL');
 db.pragma('foreign_keys = ON');
 
 //create table if it doesn't exist
-db.exec(`CREATE TABLE IF NOT EXISTS matches (
+
+/*db.exec(`CREATE TABLE IF NOT EXISTS matches (
    id INTEGER PRIMARY KEY AUTOINCREMENT,
    fighter1 TEXT NOT NULL,
    fighter2 TEXT NOT NULL,
@@ -27,7 +31,8 @@ db.exec(`CREATE TABLE IF NOT EXISTS matches (
    oppfighter2 TEXT NOT NULL,
    result TEXT NOT NULL,
    event_timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-)`);
+)`);*/
+
 
 //db.exec(`ALTER TABLE matches
 //ADD COLUMN uniqueId number`);
@@ -88,7 +93,6 @@ app.get(`/match-Display`, (req, res) => {
 
 app.get(`/dataForCharts` , (req, res) => {
    try{
-      console.log('data for charts request recieved error between this and catch')
       const DataForChartsPrep = db.prepare (`SELECT * FROM matches`);
       const myDataForCharts = DataForChartsPrep.all();
       res.json(myDataForCharts);
