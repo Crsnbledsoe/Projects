@@ -176,7 +176,7 @@ app.post('/api/t8/fetch', async (req, res) => {
       const stmt = db.prepare('INSERT INTO t8players (polaris_id, user_id, username) VALUES (?, ?, ?) ON CONFLICT(polaris_id) DO UPDATE SET username = excluded.username');
       const matches = db.prepare('INSERT INTO t8matches (battle_id, battle_at, battle_type, game_version, p1_polaris_id, p1_user_id, p1_chara_id, p1_rank_id, p1_rating_before, p1_rating_change, p1_rounds, p2_polaris_id, p2_user_id, p2_chara_id, p2_rank_id, p2_rating_before, p2_rating_change, p2_rounds, stage_id, winner) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,? ) ON CONFLICT(battle_id) DO NOTHING')
       for (const match of t8matches) {
-         const { p1_polaris_id, p1_user_id, p1_name, p2_polaris_id, p2_user_id, p2_name, battle_id, battle_at, battle_type, game_version, p1_chara_id, p1_rank_id, p1_rating_before, p1_rating_change, p1_rounds, p2_chara_id, p2_rank_id, p2_rating_before, p2_rating_change, p2_rounds, stage_id, winner} = match
+         const { p1_polaris_id, p1_user_id, p1_name, p2_polaris_id, p2_user_id, p2_name, battle_id, battle_at, battle_type, game_version, p1_chara_id, p1_rank: p1_rank_id, p1_rating_before, p1_rating_change, p1_rounds, p2_chara_id, p2_rank: p2_rank_id, p2_rating_before, p2_rating_change, p2_rounds, stage_id, winner} = match
          stmt.run(p1_polaris_id, p1_user_id, p1_name);
          stmt.run(p2_polaris_id, p2_user_id, p2_name);
          matches.run(battle_id, battle_at, battle_type, game_version, p1_polaris_id, p1_user_id, p1_chara_id, p1_rank_id, p1_rating_before, p1_rating_change, p1_rounds, p2_polaris_id, p2_user_id, p2_chara_id, p2_rank_id, p2_rating_before, p2_rating_change, p2_rounds, stage_id, winner)
@@ -189,6 +189,10 @@ res.status(500).json({error: err.message});
    }
 });
 
+
+app.post('api/t8/seed', (req, res) => {
+   const characters = db.prepare (`INSERT INTO t8characters()`)
+})
 
 app.get('/Tekken8.html', (req, res) => {
    res.sendFile('./HTML/Tekken8.html', {root: __dirname})
@@ -213,4 +217,9 @@ app.use((req, res) => {
 //
  //   console.log('File written successfully');
 //});
+const knownCharacters = [{char_id: 6, char_name: "Jin"}, {char_id: 0, char_name: "Paul"}, {char_id: 1, char_name: "Law" }]
+const characters = db.prepare('INSERT INTO t8characters(char_id, char_name) VALUES(?,?)')
+   for (const character of knownCharacters) {
+      characters.run(character.char_id,character.char_name)
+ }
 
