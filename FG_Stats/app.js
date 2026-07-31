@@ -166,15 +166,24 @@ app.get('/loadMore', (req, res) => {
 
 
 //t8 routes
-/*app.post('/api/t8/fetch', async (req, res) => {
+app.post('/api/t8/fetch', async (req, res) => {
    try{
-      const beforeParam = Math.floor(Date.now)/1000
-      await fetch('https://wank.wavu.wiki/api/replays/${beforeParam}')
+      const beforeParam = Math.floor(Date.now()/1000)
+      const response = await fetch(`https://wank.wavu.wiki/api/replays/?before=${beforeParam}&_format=json`)
+      const t8matches = await response.json();
+      console.log(t8matches);
+      res.send(t8matches);
+   } catch(err) {
+console.error(`error retrieving matches`, err)
+console.log(`error retrieving matches.`)
+res.status(500).json({error: err.message});
    }
-})*/
+});
 
 
-
+app.get('/Tekken8.html', (req, res) => {
+   res.sendFile('./HTML/Tekken8.html', {root: __dirname})
+});
 
 
 //404
