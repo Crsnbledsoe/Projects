@@ -190,13 +190,30 @@ res.status(500).json({error: err.message});
 });
 
 
-app.post('api/t8/seed', (req, res) => {
-   const characters = db.prepare (`INSERT INTO t8characters()`)
+//run once to insert character ids, names, and patch added
+app.post('/api/t8/seed', (req, res) => {
+   try{
+   const knownCharacters = [{char_id: 0, char_name: "Paul"}, {char_id: 1, char_name: "Law" }, {char_id: 2, char_name: "King"}, {char_id: 3, char_name: "Yoshimitsu"}, {char_id: 4, char_name: "Hwoarang"}, {char_id: 5, char_name: "Ling Xiaoyu"}, {char_id: 6, char_name: "Jin"}, {char_id: 7, char_name: "Bryan"}, {char_id: 8, char_name: "Kazuya"}, {char_id: 9, char_name: "Steve",}, {char_id: 10, char_name:"Jack-8"}, {char_id: 11, char_name: "Asuka"}, {char_id: 12, char_name: "Devil Jin"}, {char_id: 13, char_name: "Feng"}, {char_id: 14, char_name: "Lili"}, {char_id: 15, char_name: "Dragunov"}, {char_id: 16, char_name: "Leo"}, {char_id: 17, char_name: "Lars"}, {char_id: 18, char_name: "Alisa"}, {char_id: 19, char_name: "Claudio"}, {char_id: 20, char_name: "Shaheen"}, {char_id: 21, char_name: "Nina"}, {char_id: 22, char_name: "Lee"}, {char_id: 23, char_name: "Kuma"}, {char_id: 24, char_name: "Panda"}, {char_id: 25, char_name: "Zafina"}, {char_id: 26, char_name: "Leroy"}, {char_id: 27, char_name: "Jun"}, {char_id: 28, char_name: "Reina"}, {char_id: 29, char_name: "Azucena"}, {char_id: 30, char_name: "Victor"}, {char_id: 31, char_name: "Raven"}, {char_id: 33, char_name: "Eddy", patch_added: 10301}, {char_id: 34, char_name: "Lidia", patch_added: 10601}, {char_id: 35, char_name: "Heihachi", patch_added: 10801}, {char_id: 36, char_name: "Clive", patch_added: 11001}, {char_id: 37, char_name: "Anna", patch_added: 20001}, {char_id: 38, char_name: "Fahkumram", patch_added: 20301}, {char_id: 39, char_name: "Armor King", patch_added: 20601}, {char_id: 40, char_name: "Miary Zo", patch_added: 20800}, {char_id: 41, char_name: "Kunimitsu", patch_added: 30101} ]
+   const characters = db.prepare('INSERT INTO t8characters(char_id, char_name, patch_added) VALUES(?,?,?) ON CONFLICT(char_id) DO NOTHING')
+   for (const character of knownCharacters) {
+   characters.run(character.char_id,character.char_name, character.patch_added)
+   }
+   res.send('characters added to table successfully');
+}
+catch(err) {
+   console.error('Error adding characters to t8characters table');
+   console.log('error adding characters to t8Characters table');
+   res.status(500).json({error: err.message});
+}
 })
+
 
 app.get('/Tekken8.html', (req, res) => {
    res.sendFile('./HTML/Tekken8.html', {root: __dirname})
 });
+
+
+
 
 
 //404
@@ -217,9 +234,9 @@ app.use((req, res) => {
 //
  //   console.log('File written successfully');
 //});
-const knownCharacters = [{char_id: 6, char_name: "Jin"}, {char_id: 0, char_name: "Paul"}, {char_id: 1, char_name: "Law" }]
-const characters = db.prepare('INSERT INTO t8characters(char_id, char_name) VALUES(?,?)')
+const knownCharacters = [{char_id: 0, char_name: "Paul"}, {char_id: 1, char_name: "Law" }, {char_id: 2, char_name: "King"}, {char_id: 3, char_name: "Yoshimitsu"}, {char_id: 4, char_name: "Hwoarang"}, {char_id: 5, char_name: "Ling Xiaoyu"}, {char_id: 6, char_name: "Jin"}, {char_id: 7, char_name: "Bryan"}, {char_id: 8, char_name: "Kazuya"}, {char_id: 9, char_name: Steve,}, {char_id: 10, char_name:"Jack-8"}, {char_id: 11, char_name: "Asuka"}, {char_id: 12, char_name: "Devil Jin"}, {char_id: 13, char_name: "Feng"}, {char_id: 14, char_name: "Lili"}, {char_id: 15, char_name: "Dragunov"}, {char_id: 16, char_name: "Leo"}, {char_id: 17, char_name: "Lars"}, {char_id: 18, char_name: "Alisa"}, {char_id: 19, char_name: "Claudio"}, {char_id: 20, char_name: "Shaheen"}, {char_id: 21, char_name: "Nina"}, {char_id: 22, char_name: "Lee"}, {char_id: 23, char_name: "Kuma"}, {char_id: 24, char_name: "Panda"}, {char_id: 25, char_name: "Zafina"}, {char_id: 26, char_name: "Leroy"}, {char_id: 27, char_name: "Jun"}, {char_id: 28, char_name: "Reina"}, {char_id: 29, char_name: "Azucena"}, {char_id: 30, char_name: "Victor"}, {char_id: 31, char_name: "Raven"}, {char_id: 33, char_name: "Eddy", patch_added: 10301}, {char_id: 34, char_name: "Lidia", patch_added: 10601}, {char_id: 35, char_name: "Heihachi", patch_added: 10801}, {char_id: 36, char_name: "Clive", patch_added: 11001}, {char_id: 37, char_name: "Anna", patch_added: 20001}, {char_id: 38, char_name: "Fahkumram", patch_added: 20301}, {char_id: 39, char_name: "Armor King", patch_added: 20601}, {char_id: 40, char_name: "Mairy Zo", patch_added: 20800}, {char_id: 41, char_name: "Kunimitsu", patch_added: 30101} ]
+const characters = db.prepare('INSERT INTO t8characters(char_id, char_name, patch_added) VALUES(?,?,?)')
    for (const character of knownCharacters) {
-      characters.run(character.char_id,character.char_name)
- }
+      characters.run(character.char_id,character.char_name, character.patch_added)
+   }
 
