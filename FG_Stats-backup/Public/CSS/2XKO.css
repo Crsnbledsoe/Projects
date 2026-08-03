@@ -1,0 +1,58 @@
+body {
+background-color: rgb(18, 18, 18);
+color: rgb(204, 245, 100);
+}
+
+.results {
+width: 650px;
+padding: 10px;
+text-align: center;
+background-color: blue;
+gap: 6px;
+
+}
+
+.results p {
+display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color:rgb(245, 100, 100);
+    border:  1px;
+    border-style: solid;
+    border-color:rgb(204, 245, 100);
+    padding: 2px;
+}
+
+p.wl {
+    color: lime;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.chart-container {
+    position: top;
+
+    width: 400px;
+    height: 400px;
+    margin: 10px;
+}
+    
+.layout {
+    display: flex;
+}
+.nav {
+    color: purple;
+}
+
+a:link {
+    color: red;
+}
+
+    
+
+
+#opponentComboContainer {
+    margin-top: 20px;
+    border: 1px solid rgb(204, 245, 100);
+}
