@@ -49,7 +49,9 @@ a:link {
     color: red;
 }
 
-    
+.addRanks {
+    background-color: red;
+}
 
 
 #opponentComboContainer {

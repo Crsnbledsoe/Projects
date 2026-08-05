@@ -193,15 +193,11 @@ res.status(500).json({error: err.message});
 //run once to insert character ids, names, and patch added
 app.post('/api/t8/seed', (req, res) => {
    try{
-      console.log(`try tried`)
    const knownCharacters = [{char_id: 0, char_name: "Paul"}, {char_id: 1, char_name: "Law" }, {char_id: 2, char_name: "King"}, {char_id: 3, char_name: "Yoshimitsu"}, {char_id: 4, char_name: "Hwoarang"}, {char_id: 5, char_name: "Ling Xiaoyu"}, {char_id: 6, char_name: "Jin"}, {char_id: 7, char_name: "Bryan"}, {char_id: 8, char_name: "Kazuya"}, {char_id: 9, char_name: "Steve",}, {char_id: 10, char_name:"Jack-8"}, {char_id: 11, char_name: "Asuka"}, {char_id: 12, char_name: "Devil Jin"}, {char_id: 13, char_name: "Feng"}, {char_id: 14, char_name: "Lili"}, {char_id: 15, char_name: "Dragunov"}, {char_id: 16, char_name: "Leo"}, {char_id: 17, char_name: "Lars"}, {char_id: 18, char_name: "Alisa"}, {char_id: 19, char_name: "Claudio"}, {char_id: 20, char_name: "Shaheen"}, {char_id: 21, char_name: "Nina"}, {char_id: 22, char_name: "Lee"}, {char_id: 23, char_name: "Kuma"}, {char_id: 24, char_name: "Panda"}, {char_id: 28, char_name: "Zafina"}, {char_id: 29, char_name: "Leroy"}, {char_id: 32, char_name: "Jun"}, {char_id: 33, char_name: "Reina"}, {char_id: 34, char_name: "Azucena"}, {char_id: 35, char_name: "Victor"}, {char_id: 36, char_name: "Raven"}, {char_id: 38, char_name: "Eddy", patch_added: 10301}, {char_id: 39, char_name: "Lidia", patch_added: 10601}, {char_id: 40, char_name: "Heihachi", patch_added: 10801}, {char_id: 41, char_name: "Clive", patch_added: 11001}, {char_id: 42, char_name: "Anna", patch_added: 20001}, {char_id: 43, char_name: "Fahkumram", patch_added: 20301}, {char_id: 44, char_name: "Armor King", patch_added: 20601}, {char_id: 45, char_name: "Mairy Zo", patch_added: 20800}, {char_id: 46, char_name: "Kunimitsu", patch_added: 30101}]
-   console.log(`knownCharacters created `)
    const characters = db.prepare('INSERT INTO t8characters(char_id, char_name, patch_added) VALUES(?,?,?) ON CONFLICT(char_id) DO UPDATE SET char_id = excluded.char_id')
-   console.log('character prepare comple')
    for (const character of knownCharacters) {
    characters.run(character.char_id,character.char_name, character.patch_added)
    }
-   console.log('for loop complete')
    res.send('characters added to table successfully');
 }
 catch(err) {
@@ -210,6 +206,23 @@ catch(err) {
    res.status(500).json({error: err.message});
 }
 })
+
+//one time route to insert ranks and ids into ranks tables
+app.post('/api/t8/rank-seed', (req, res) => {
+   try{
+      const knownRanks = [{rank_id: 0, en_name: "Beginner", ja_name: "入門生", points_season1:0, points_season2:0, points_season3:0, slug: "beginner"}, {rank_id: 1, rank_name: "First Dan" }, {rank_id: 2, rank_name: "King"}, {rank_id: 3, rank_name: "Yoshimitsu"}, {rank_id: 4, rank_name: "Hwoarang"}, {rank_id: 5, rank_name: "Ling Xiaoyu"}, {rank_id: 6, rank_name: "Jin"}, {rank_id: 7, rank_name: "Bryan"}, {rank_id: 8, rank_name: "Kazuya"}, {rank_id: 9, rank_name: "Steve",}, {rank_id: 10, rank_name:"Jack-8"}, {rank_id: 11, rank_name: "Asuka"}, {rank_id: 12, rank_name: "Devil Jin"}, {rank_id: 13, rank_name: "Feng"}, {rank_id: 14, rank_name: "Lili"}, {rank_id: 15, rank_name: "Dragunov"}, {rank_id: 16, rank_name: "Leo"}, {rank_id: 17, rank_name: "Lars"}, {rank_id: 18, rank_name: "Alisa"}, {rank_id: 19, rank_name: "Claudio"}, {rank_id: 20, rank_name: "Shaheen"}, {rank_id: 21, rank_name: "Nina"}, {rank_id: 22, rank_name: "Lee"}, {rank_id: 23, rank_name: "Kuma"}, {rank_id: 24, rank_name: "Panda"}, {rank_id: 28, rank_name: "Zafina"}, {rank_id: 29, rank_name: "Leroy"}, {rank_id: 32, rank_name: "Jun"}, {rank_id: 33, rank_name: "Reina"}, {rank_id: 34, rank_name: "Azucena"}, {rank_id: 35, rank_name: "Victor"}, {rank_id: 36, rank_name: "Raven"}, {rank_id: 38, rank_name: "Eddy", patch_added: 10301}, {rank_id: 39, rank_name: "Lidia", patch_added: 10601}, {rank_id: 40, rank_name: "Heihachi", patch_added: 10801}, {rank_id: 41, rank_name: "Clive", patch_added: 11001}, {rank_id: 42, rank_name: "Anna", patch_added: 20001}, {rank_id: 43, rank_name: "Fahkumram", patch_added: 20301}, {rank_id: 44, rank_name: "Armor King", patch_added: 20601}, {rank_id: 45, rank_name: "Mairy Zo", patch_added: 20800}, {rank_id: 46, rank_name: "Kunimitsu", patch_added: 30101}]
+
+   }
+   catch(err){
+      console.error(`Error adding ranks to t8ranks table`);
+      console.log(`Error adding ranks to the t8ranks table`);
+      res.status(500).json({error: err.message});
+
+   }
+})
+
+
+
 
 
 app.get('/Tekken8.html', (req, res) => {
@@ -238,11 +251,6 @@ app.use((req, res) => {
 //
  //   console.log('File written successfully');
 //});
-// 28= zafina 29=leroy  32=jun 33= reina 34= azcuema 38= eddy there is no id25-27, 30-31
-/*const knownCharacters = [{char_id: 0, char_name: "Paul"}, {char_id: 1, char_name: "Law" }, {char_id: 2, char_name: "King"}, {char_id: 3, char_name: "Yoshimitsu"}, {char_id: 4, char_name: "Hwoarang"}, {char_id: 5, char_name: "Ling Xiaoyu"}, {char_id: 6, char_name: "Jin"}, {char_id: 7, char_name: "Bryan"}, {char_id: 8, char_name: "Kazuya"}, {char_id: 9, char_name: Steve,}, {char_id: 10, char_name:"Jack-8"}, {char_id: 11, char_name: "Asuka"}, {char_id: 12, char_name: "Devil Jin"}, {char_id: 13, char_name: "Feng"}, {char_id: 14, char_name: "Lili"}, {char_id: 15, char_name: "Dragunov"}, {char_id: 16, char_name: "Leo"}, {char_id: 17, char_name: "Lars"}, {char_id: 18, char_name: "Alisa"}, {char_id: 19, char_name: "Claudio"}, {char_id: 20, char_name: "Shaheen"}, {char_id: 21, char_name: "Nina"}, {char_id: 22, char_name: "Lee"}, {char_id: 23, char_name: "Kuma"}, {char_id: 24, char_name: "Panda"}, {char_id: 28, char_name: "Zafina"}, {char_id: 29, char_name: "Leroy"}, {char_id: 32, char_name: "Jun"}, {char_id: 33, char_name: "Reina"}, {char_id: 34, char_name: "Azucena"}, {char_id: 35, char_name: "Victor"}, {char_id: 36, char_name: "Raven"}, {char_id: 38, char_name: "Eddy", patch_added: 10301}, {char_id: 39, char_name: "Lidia", patch_added: 10601}, {char_id: 40, char_name: "Heihachi", patch_added: 10801}, {char_id: 41, char_name: "Clive", patch_added: 11001}, {char_id: 42, char_name: "Anna", patch_added: 20001}, {char_id: 43, char_name: "Fahkumram", patch_added: 20301}, {char_id: 44, char_name: "Armor King", patch_added: 20601}, {char_id: 45, char_name: "Mairy Zo", patch_added: 20800}, {char_id: 46, char_name: "Kunimitsu", patch_added: 30101} ]
-const characters = db.prepare('INSERT INTO t8characters(char_id, char_name, patch_added) VALUES(?,?,?)')
-   for (const character of knownCharacters) {
-      characters.run(character.char_id,character.char_name, character.patch_added)
-   }*/
+//
 
 //rank_id 34= godV rank35 = godVI

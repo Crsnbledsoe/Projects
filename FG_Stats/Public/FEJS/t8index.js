@@ -1,7 +1,10 @@
 //gets matches
 document.getElementById("getMatches").addEventListener("click", getMatches);
 
-document.getElementById("addchars").addEventListener("click", addChars);
+document.getElementById("addChars").addEventListener("click", addChars);
+
+document.getElementById("addRanks").addEventListener("click", addRanks);
+
 
 
 async function getMatches(){
@@ -22,3 +25,12 @@ async function addChars() {
         }
     })
 }
+
+async function addRanks() {
+    const response = await fetch('/api/t8/rank-seed', {
+        method: 'POST',
+        headers: {
+            "Content-Typer": "application/json"
+        }
+    })
+};
