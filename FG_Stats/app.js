@@ -210,9 +210,47 @@ catch(err) {
 //one time route to insert ranks and ids into ranks tables
 app.post('/api/t8/rank-seed', (req, res) => {
    try{
-      const knownRanks = [{rank_id: 0, en_name: "Beginner", ja_name: "入門生", points_season1:0, points_season2:0, points_season3:0, slug: "beginner"}, {rank_id: 1, rank_name: "First Dan" }, {rank_id: 2, rank_name: "King"}, {rank_id: 3, rank_name: "Yoshimitsu"}, {rank_id: 4, rank_name: "Hwoarang"}, {rank_id: 5, rank_name: "Ling Xiaoyu"}, {rank_id: 6, rank_name: "Jin"}, {rank_id: 7, rank_name: "Bryan"}, {rank_id: 8, rank_name: "Kazuya"}, {rank_id: 9, rank_name: "Steve",}, {rank_id: 10, rank_name:"Jack-8"}, {rank_id: 11, rank_name: "Asuka"}, {rank_id: 12, rank_name: "Devil Jin"}, {rank_id: 13, rank_name: "Feng"}, {rank_id: 14, rank_name: "Lili"}, {rank_id: 15, rank_name: "Dragunov"}, {rank_id: 16, rank_name: "Leo"}, {rank_id: 17, rank_name: "Lars"}, {rank_id: 18, rank_name: "Alisa"}, {rank_id: 19, rank_name: "Claudio"}, {rank_id: 20, rank_name: "Shaheen"}, {rank_id: 21, rank_name: "Nina"}, {rank_id: 22, rank_name: "Lee"}, {rank_id: 23, rank_name: "Kuma"}, {rank_id: 24, rank_name: "Panda"}, {rank_id: 28, rank_name: "Zafina"}, {rank_id: 29, rank_name: "Leroy"}, {rank_id: 32, rank_name: "Jun"}, {rank_id: 33, rank_name: "Reina"}, {rank_id: 34, rank_name: "Azucena"}, {rank_id: 35, rank_name: "Victor"}, {rank_id: 36, rank_name: "Raven"}, {rank_id: 38, rank_name: "Eddy", patch_added: 10301}, {rank_id: 39, rank_name: "Lidia", patch_added: 10601}, {rank_id: 40, rank_name: "Heihachi", patch_added: 10801}, {rank_id: 41, rank_name: "Clive", patch_added: 11001}, {rank_id: 42, rank_name: "Anna", patch_added: 20001}, {rank_id: 43, rank_name: "Fahkumram", patch_added: 20301}, {rank_id: 44, rank_name: "Armor King", patch_added: 20601}, {rank_id: 45, rank_name: "Mairy Zo", patch_added: 20800}, {rank_id: 46, rank_name: "Kunimitsu", patch_added: 30101}]
+      const knownRanks = [{rank_id: 0, en_name: "Beginner", ja_name: "入門生", slug: "beginner", color: "Brown", division: "Brown", f_rank: "" },
+         {rank_id: 1, en_name: "First Dan", ja_name: "初段", slug: "first-dan", color: "Silver", division: "Silver", f_rank: ""}, 
+         {rank_id: 2, em_name: "Second Dan", ja_name: "二段", slug: "second-dan", color: "Silver", division: "Silver", f_rank: ""},
+         {rank_id: 3, em_name: "Fighter", ja_name: "勇士", slug: "fighter", color: "Turquoise", division: "Turquoise", f_rank: ""},
+         {rank_id: 4, em_name: "Strategist", ja_name: "策士", slug: "strategist", color: "Turquoise", division: "Turquoise", f_rank: ""},
+         {rank_id: 5, em_name: "Combatant", ja_name: "闘士", slug: "combatant", color: "Turquoise", division: "Turquoise", f_rank: ""},
+         {rank_id: 6, em_name: "Brawler", ja_name: "餓狼", slug: "brawler", color: "Green", division: "Green", f_rank: ""},
+         {rank_id: 7, em_name: "Ranger", ja_name: "荒鷲", slug: "ranger", color: "Green", division: "Green", f_rank: ""},
+         {rank_id: 8, em_name: "Cavalry", ja_name: "猛象", slug: "cavalry", color: "Green", division: "Green", f_rank: ""},
+         {rank_id: 9, em_name: "Warrior", ja_name: "剛拳", slug: "warrior", color: "Yellow", division: "Yellow", f_rank: ""},
+         {rank_id: 10, em_name: "Assailant", ja_name: "邪拳", slug: "assailant", color: "Yellow", division: "Yellow", f_rank: ""},
+         {rank_id: 11, em_name: "Dominator", ja_name: "戒拳", slug: "dominator", color: "Yellow", division: "Yellow", f_rank: ""},
+         {rank_id: 12, em_name: "Vanquisher", ja_name: "修羅", slug: "vanquisher", color: "Orange", division: "Orange", f_rank: ""},
+         {rank_id: 13, em_name: "Destroyer", ja_name: "羅刹", slug: "destroyer", color: "Orange", division: "Orange", f_rank: ""},
+         {rank_id: 14, em_name: "Eliminator", ja_name: "羅傑", slug: "eliminator", color: "Orange", division: "Orange", f_rank: ""},
+         {rank_id: 15, em_name: "Garyu", ja_name: "臥龍", slug: "garyu", color: "Red", division: "Red", f_rank: ""},
+         {rank_id: 16, em_name: "Shinryu", ja_name: "真龍", slug: "shinryu", color: "Red", division: "Red", f_rank: ""},
+         {rank_id: 17, em_name: "Tenryu", ja_name: "天龍", slug: "tenryu", color: "Red", division: "Red", f_rank: ""},
+         {rank_id: 18, em_name: "Mighty Ruler", ja_name: "拳帝", slug: "mighty-ruler", color: "Ruler", division: "Ruler", f_rank: ""},
+         {rank_id: 19, em_name: "Flame Ruler", ja_name: "炎帝", slug: "flame-ruler", color: "Ruler", division: "Ruler", f_rank: ""},
+         {rank_id: 20, em_name: "Battle Ruler", ja_name: "炎帝", slug: "battle-ruler", color: "Ruler", division: "Ruler", f_rank: ""},
+         {rank_id: 21, em_name: "Fujin", ja_name: "風神", slug: "fujin", color: "Blue", division: "Blue", f_rank: ""},
+         {rank_id: 22, em_name: "Raijin", ja_name: "雷神", slug: "raijin", color: "Blue", division: "Blue", f_rank: ""},
+         {rank_id: 23, em_name: "Kishin", ja_name: "鬼神", slug: "kishin", color: "Blue", division: "Blue", f_rank: ""},
+         {rank_id: 24, em_name: "Bushin", ja_name: "武神", slug: "bushin", color: "Blue", division: "Blue", f_rank: ""},
+         {rank_id: 25, em_name: "Tekken King", ja_name: "鉄拳王", slug: "tekken-king", color: "Gold", division: "Purple", f_rank: ""},
+         {rank_id: 26, em_name: "Tekken Emperor", ja_name: "鉄拳覇皇", slug: "tekken-emperor", color: "Gold", division: "Purple", f_rank: ""},
+         {rank_id: 27, em_name: "Tekken God", ja_name: "鉄拳神", slug: "tekken-god", color: "Gold", division: "Gold", f_rank: ""},
+         {rank_id: 28, em_name: "Tekken God Supreme", ja_name: "鉄拳神極", slug: "tekken-god-supreme", color: "Gold", division: "Gold", f_rank: ""},
+         {rank_id: 29, em_name: "Tekken God of Destruction", ja_name: "破壊神", slug: "tekken-god-of-destruction", color: "God of Destruction", division: "God of Destruction", f_rank: ""},
+         {rank_id: 30, em_name: "Tekken God of Destruction 1", ja_name: "破壊神壱", slug: "tekken-god-of-destruction-1", color: "God of Destruction", division: "God of Destruction", f_rank: ""},
+         {rank_id: 31, em_name: "Tekken God of Destruction 2", ja_name: "破壊神弐", slug: "tekken-god-of-destruction-2", color: "God of Destruction", division: "God of Destruction", f_rank: ""},
+         {rank_id: 32, em_name: "Tekken God of Destruction 3", ja_name: "破壊神参", slug: "tekken-god-of-destruction-3", color: "God of Destruction", division: "God of Destruction", f_rank: ""},
+         {rank_id: 33, em_name: "Tekken God of Destruction 4", ja_name: "破壊神肆", slug: "tekken-god-of-destruction-4", color: "God of Destruction", division: "God of Destruction", f_rank: ""},
+         {rank_id: 34, em_name: "Tekken God of Destruction 5", ja_name: "破壊神伍", slug: "tekken-god-of-destruction-5", color: "God of Destruction", division: "God of Destruction", f_rank: ""},
+         {rank_id: 35, em_name: "Tekken God of Destruction 6", ja_name: "破壊神陸", slug: "tekken-god-of-destruction-6", color: "God of Destruction", division: "God of Destruction", f_rank: ""},
+         {rank_id: 36, em_name: "Tekken God of Destruction 7", ja_name: "破壊神漆", slug: "tekken-god-of-destruction-7", color: "God of Destruction", division: "God of Destruction", f_rank: ""},
+         {rank_id: 37, em_name: "Tekken God of Destruction ∞", ja_name: "破壊神∞", slug: "tekken-god-of-destruction-∞", color: "God of Destruction", division: "God of Destruction", f_rank: ""},
 
-   }
+      ]
+}
    catch(err){
       console.error(`Error adding ranks to t8ranks table`);
       console.log(`Error adding ranks to the t8ranks table`);
