@@ -9,12 +9,18 @@ db.exec(`CREATE TABLE IF NOT EXISTS t8characters (
 
 db.exec(`CREATE TABLE IF NOT EXISTS t8ranks (
    rank_id INTEGER PRIMARY KEY ,
-   rank_name TEXT,
-   points_season1 INTEGER,
-   points_season2 INTEGER,
-   points_season3 INTEGER
+   en_name TEXT,
+   ja_name TEXT,
+   slug TEXT,
+   color TEXT,
+   division TEXT,
+   f_rank TEXT
 )`);
 
+db.exec(`CREATE TABLE IF NOT EXISTS t8patches (
+    game_version INTEGER PRIMARY KEY
+    release_date TEXT
+    description)`)
 
 //initialize a table to track matches
 db.exec(`CREATE TABLE IF NOT EXISTS t8matches (
@@ -46,4 +52,5 @@ db.exec(`CREATE TABLE IF NOT EXISTS t8players (
    polaris_id TEXT PRIMARY KEY,
    user_id INTEGER,
    username TEXT
+
 )`);
