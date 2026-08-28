@@ -262,10 +262,11 @@ app.post('/api/t8/rank-seed', (req, res) => {
 
 app.post('/api/t8/game-version-seed', (req, res) => {
    try {
-      knownPatch = [{
-         
-      }]
-   }
+      knownPatch = [{game_version: 10104, date_added: 1707307200}, {game_version: 10201, date_added: 1709172000}, {game_version: 10301, date_added: }
+      
+      ]
+      }
+   
    catch{}
 })
 

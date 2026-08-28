@@ -17,10 +17,11 @@ db.exec(`CREATE TABLE IF NOT EXISTS t8ranks (
    f_rank TEXT
 )`);
 
-db.exec(`CREATE TABLE IF NOT EXISTS t8patches (
+/*db.exec(`CREATE TABLE IF NOT EXISTS t8patches (
     game_version INTEGER PRIMARY KEY
     release_date TEXT
     description)`);
+    */
 
 //initialize a table to track matches
 db.exec(`CREATE TABLE IF NOT EXISTS t8matches (
