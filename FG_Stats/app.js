@@ -262,7 +262,7 @@ app.post('/api/t8/rank-seed', (req, res) => {
 
 app.post('/api/t8/game-version-seed', (req, res) => {
    try {
-      knownPatch = [{game_version: 10104, date_added: 1707307200}, {game_version: 10201, date_added: 1709172000}, {game_version: 10301, date_added: }
+      knownPatch = [{game_version: 10104, date_added: 1707307200}, {game_version: 10201, date_added: 1709172000}, {game_version: 10301, date_added: 1712008800}, {game_version: 10302, date_added: 1714114800 },{game_version: 10400, date_added: 1715151600},{game_version: 10500, date_added: 1718089200}, {game_version: 10601, date_added: 1721707200},{game_version: 10602, date_added: 1722927780},{game_version: 10700, date_added: 1725350580},{game_version: 10801, date_added: 1727755200},{game_version: 10901, date_added: 1730185200} , {game_version: 11001, date_added: 1734411600}, {game_version: 11100, date_added: 1736827200},{game_version: 11201, date_added:1739851200},{game_version: 11300, date_added: 1741669200},{game_version: 20001, date_added: 1743480000}, {game_version: 20002, date_added: 1744866180},{game_version: 20100, date_added: 1747119600},{game_version: 20200, date_added: 1748925000}, {game_version: 20301, date_added: 1751947200},{game_version: 20302, date_added: 1753155000},{game_version: 20400, date_added: 1754368200},{game_version: 20500, date_added: 1756794600},{game_version: 20601, date_added: 1760421600}, {game_version: 20602, date_added: 1761705000}, {game_version: 20800, date_added: 1764644400},{game_version: 20801, date_added: 1765852200},{} 
       
       ]
       }
