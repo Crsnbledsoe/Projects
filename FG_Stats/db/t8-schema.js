@@ -19,7 +19,7 @@ db.exec(`CREATE TABLE IF NOT EXISTS t8ranks (
 
 /*db.exec(`CREATE TABLE IF NOT EXISTS t8patches (
     game_version INTEGER PRIMARY KEY
-    release_date TEXT
+    release_date INTEGER
     description)`);
     */
 
