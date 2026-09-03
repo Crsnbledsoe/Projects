@@ -3,7 +3,7 @@ const db = require('./connection');
 db.exec(`CREATE TABLE IF NOT EXISTS t8characters (
   char_id INTEGER PRIMARY KEY,
   char_name TEXT,
-  patch_added INTEGER
+  game_version INTEGER
 )`);
 
 
@@ -17,11 +17,12 @@ db.exec(`CREATE TABLE IF NOT EXISTS t8ranks (
    f_rank TEXT
 )`);
 
-/*db.exec(`CREATE TABLE IF NOT EXISTS t8patches (
+//ranks table
+db.exec(`CREATE TABLE IF NOT EXISTS t8versions
     game_version INTEGER PRIMARY KEY
-    release_date INTEGER
-    description)`);
-    */
+    patch_date INTEGER
+    )`);
+    
 
 //initialize a table to track matches
 db.exec(`CREATE TABLE IF NOT EXISTS t8matches (

@@ -193,10 +193,10 @@ res.status(500).json({error: err.message});
 //run once to insert character ids, names, and patch added
 app.post('/api/t8/seed', (req, res) => {
    try{
-   const knownCharacters = [{char_id: 0, char_name: "Paul"}, {char_id: 1, char_name: "Law" }, {char_id: 2, char_name: "King"}, {char_id: 3, char_name: "Yoshimitsu"}, {char_id: 4, char_name: "Hwoarang"}, {char_id: 5, char_name: "Ling Xiaoyu"}, {char_id: 6, char_name: "Jin"}, {char_id: 7, char_name: "Bryan"}, {char_id: 8, char_name: "Kazuya"}, {char_id: 9, char_name: "Steve",}, {char_id: 10, char_name:"Jack-8"}, {char_id: 11, char_name: "Asuka"}, {char_id: 12, char_name: "Devil Jin"}, {char_id: 13, char_name: "Feng"}, {char_id: 14, char_name: "Lili"}, {char_id: 15, char_name: "Dragunov"}, {char_id: 16, char_name: "Leo"}, {char_id: 17, char_name: "Lars"}, {char_id: 18, char_name: "Alisa"}, {char_id: 19, char_name: "Claudio"}, {char_id: 20, char_name: "Shaheen"}, {char_id: 21, char_name: "Nina"}, {char_id: 22, char_name: "Lee"}, {char_id: 23, char_name: "Kuma"}, {char_id: 24, char_name: "Panda"}, {char_id: 28, char_name: "Zafina"}, {char_id: 29, char_name: "Leroy"}, {char_id: 32, char_name: "Jun"}, {char_id: 33, char_name: "Reina"}, {char_id: 34, char_name: "Azucena"}, {char_id: 35, char_name: "Victor"}, {char_id: 36, char_name: "Raven"}, {char_id: 38, char_name: "Eddy", patch_added: 10301}, {char_id: 39, char_name: "Lidia", patch_added: 10601}, {char_id: 40, char_name: "Heihachi", patch_added: 10801}, {char_id: 41, char_name: "Clive", patch_added: 11001}, {char_id: 42, char_name: "Anna", patch_added: 20001}, {char_id: 43, char_name: "Fahkumram", patch_added: 20301}, {char_id: 44, char_name: "Armor King", patch_added: 20601}, {char_id: 45, char_name: "Mairy Zo", patch_added: 20800}, {char_id: 46, char_name: "Kunimitsu", patch_added: 30101}]
-   const characters = db.prepare('INSERT INTO t8characters(char_id, char_name, patch_added) VALUES(?,?,?) ON CONFLICT(char_id) DO UPDATE SET char_id = excluded.char_id')
+   const knownCharacters = [{char_id: 0, char_name: "Paul"}, {char_id: 1, char_name: "Law" }, {char_id: 2, char_name: "King"}, {char_id: 3, char_name: "Yoshimitsu"}, {char_id: 4, char_name: "Hwoarang"}, {char_id: 5, char_name: "Ling Xiaoyu"}, {char_id: 6, char_name: "Jin"}, {char_id: 7, char_name: "Bryan"}, {char_id: 8, char_name: "Kazuya"}, {char_id: 9, char_name: "Steve",}, {char_id: 10, char_name:"Jack-8"}, {char_id: 11, char_name: "Asuka"}, {char_id: 12, char_name: "Devil Jin"}, {char_id: 13, char_name: "Feng"}, {char_id: 14, char_name: "Lili"}, {char_id: 15, char_name: "Dragunov"}, {char_id: 16, char_name: "Leo"}, {char_id: 17, char_name: "Lars"}, {char_id: 18, char_name: "Alisa"}, {char_id: 19, char_name: "Claudio"}, {char_id: 20, char_name: "Shaheen"}, {char_id: 21, char_name: "Nina"}, {char_id: 22, char_name: "Lee"}, {char_id: 23, char_name: "Kuma"}, {char_id: 24, char_name: "Panda"}, {char_id: 28, char_name: "Zafina"}, {char_id: 29, char_name: "Leroy"}, {char_id: 32, char_name: "Jun"}, {char_id: 33, char_name: "Reina"}, {char_id: 34, char_name: "Azucena"}, {char_id: 35, char_name: "Victor"}, {char_id: 36, char_name: "Raven"}, {char_id: 38, char_name: "Eddy", game_version: 10301}, {char_id: 39, char_name: "Lidia", game_version: 10601}, {char_id: 40, char_name: "Heihachi", game_version: 10801}, {char_id: 41, char_name: "Clive", game_version: 11001}, {char_id: 42, char_name: "Anna", game_version: 20001}, {char_id: 43, char_name: "Fahkumram", game_version: 20301}, {char_id: 44, char_name: "Armor King", game_version: 20601}, {char_id: 45, char_name: "Mairy Zo", game_version: 20800}, {char_id: 46, char_name: "Kunimitsu", game_version: 30101}]
+   const characters = db.prepare('INSERT INTO t8characters(char_id, char_name, game_version) VALUES(?,?,?) ON CONFLICT(char_id) DO UPDATE SET char_id = excluded.char_id')
    for (const character of knownCharacters) {
-   characters.run(character.char_id,character.char_name, character.patch_added)
+   characters.run(character.char_id,character.char_name, character.game_version)
    }
    res.send('characters added to table successfully');
 }
@@ -250,7 +250,11 @@ app.post('/api/t8/rank-seed', (req, res) => {
          {rank_id: 37, en_name: "Tekken God of Destruction ∞", ja_name: "破壊神∞", slug: "tekken-god-of-destruction-∞", color: "God of Destruction", division: "God of Destruction", f_rank: ""},
 
       ]
-}
+      const patches = db.prepare(`INSERT  INTO t8ranks(rank_id), en_name, ja_name, slug, color, division, f_rank) VALUES(?,?,?,?,?,?,?)`)
+   for(const rank of knownRanks) {
+      rank.rank_id, rank.en_name, rank.ja_name, rank.slug, rank.color, rank.division, rank.f_rank
+   }
+   }
    catch(err){
       console.error(`Error adding ranks to t8ranks table`);
       console.log(`Error adding ranks to the t8ranks table`);
@@ -262,12 +266,17 @@ app.post('/api/t8/rank-seed', (req, res) => {
 
 app.post('/api/t8/game-version-seed', (req, res) => {
    try {
-      knownPatch = [{game_version: 10104, date_added: 1707307200}, {game_version: 10201, date_added: 1709172000}, {game_version: 10301, date_added: 1712008800}, {game_version: 10302, date_added: 1714114800 },{game_version: 10400, date_added: 1715151600},{game_version: 10500, date_added: 1718089200}, {game_version: 10601, date_added: 1721707200},{game_version: 10602, date_added: 1722927780},{game_version: 10700, date_added: 1725350580},{game_version: 10801, date_added: 1727755200},{game_version: 10901, date_added: 1730185200} , {game_version: 11001, date_added: 1734411600}, {game_version: 11100, date_added: 1736827200},{game_version: 11201, date_added:1739851200},{game_version: 11300, date_added: 1741669200},{game_version: 20001, date_added: 1743480000}, {game_version: 20002, date_added: 1744866180},{game_version: 20100, date_added: 1747119600},{game_version: 20200, date_added: 1748925000}, {game_version: 20301, date_added: 1751947200},{game_version: 20302, date_added: 1753155000},{game_version: 20400, date_added: 1754368200},{game_version: 20500, date_added: 1756794600},{game_version: 20601, date_added: 1760421600}, {game_version: 20602, date_added: 1761705000}, {game_version: 20800, date_added: 1764644400},{game_version: 20801, date_added: 1765852200},{game_version: 30000, date_added: 1773723600}, {game_version: 30001, date_added: 1774492200},{game_version: 30002, date_added: 1776319200}, {game_version: 30101, date: 1779948000}, {game_version: 30201, date_added: 1787198400} 
-      
+     const knownVersion = [{game_version: 10104, date_added: 1707307200}, {game_version: 10201, date_added: 1709172000}, {game_version: 10301, date_added: 1712008800}, {game_version: 10302, date_added: 1714114800 },{game_version: 10400, date_added: 1715151600},{game_version: 10500, date_added: 1718089200}, {game_version: 10601, date_added: 1721707200},{game_version: 10602, date_added: 1722927780},{game_version: 10700, date_added: 1725350580},{game_version: 10801, date_added: 1727755200},{game_version: 10901, date_added: 1730185200} , {game_version: 11001, date_added: 1734411600}, {game_version: 11100, date_added: 1736827200},{game_version: 11201, date_added:1739851200},{game_version: 11300, date_added: 1741669200},{game_version: 20001, date_added: 1743480000}, {game_version: 20002, date_added: 1744866180},{game_version: 20100, date_added: 1747119600},{game_version: 20200, date_added: 1748925000}, {game_version: 20301, date_added: 1751947200},{game_version: 20302, date_added: 1753155000},{game_version: 20400, date_added: 1754368200},{game_version: 20500, date_added: 1756794600},{game_version: 20601, date_added: 1760421600}, {game_version: 20602, date_added: 1761705000}, {game_version: 20800, date_added: 1764644400},{game_version: 20801, date_added: 1765852200},{game_version: 30000, date_added: 1773723600}, {game_version: 30001, date_added: 1774492200},{game_version: 30002, date_added: 1776319200}, {game_version: 30101, date: 1779948000}, {game_version: 30201, date_added: 1787198400} 
       ]
-      }
-   
-   catch{}
+      const versions = db.prepare( `INSERT INTO t8versions (game_version, patch_date) VALUES (?,?) ON CONFLICT(game_version) DO NOTHING`)
+     for (const version of knownVersions)
+      versions.run(version.game_version, version.date_added)
+   }
+   catch(err){
+      console.error(`Error adding patches table`)
+      console.log(`Error adding patches table`)
+      res.status(500).json({error: err.message});
+   }
 })
 
 
