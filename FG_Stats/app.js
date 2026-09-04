@@ -283,6 +283,17 @@ app.post('/api/t8/game-version-seed', (req, res) => {
 })
 
 
+app.post(`/api/t8/add-seasons`, (req, res) => {
+   try {
+      const knonwSeasons =[{}
+
+      ]
+      const seasons = db.prepare(/*SQL statement here */)
+   }
+   catch {}
+})
+
+
 app.get('/Tekken8.html', (req, res) => {
    res.sendFile('./HTML/Tekken8.html', {root: __dirname})
 });

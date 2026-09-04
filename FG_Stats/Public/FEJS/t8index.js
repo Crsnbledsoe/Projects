@@ -5,6 +5,11 @@ document.getElementById("addChars").addEventListener("click", addChars);
 
 document.getElementById("addRanks").addEventListener("click", addRanks);
 
+document.getElementById("addVersions").addEventListener("click", addVersions);
+
+document.getElementById("addSeason").addEventListener("click", addVersions);
+
+
 
 
 async function getMatches(){
@@ -30,7 +35,25 @@ async function addRanks() {
     const response = await fetch('/api/t8/rank-seed', {
         method: 'POST',
         headers: {
-            "Content-Typer": "application/json"
+            "Content-Type": "application/json"
+        }
+    })
+};
+
+async function addVersions(){
+    const response = await fetch(`/api/t8/game-version-seed`, {
+        method: `POST`,
+        headers:{
+            "Content-Type": "application/json"
+        }
+    })
+};
+
+async function addSeasons(){
+    const response = await fetch(`/api/t8/add-seasons`, {
+        method: `POST`,
+        headers: {
+            "Content-Type": "application/json"
         }
     })
 };
