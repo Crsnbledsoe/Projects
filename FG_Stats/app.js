@@ -269,7 +269,7 @@ app.post('/api/t8/rank-seed', (req, res) => {
 
 app.post('/api/t8/game-version-seed', (req, res) => {
    try {
-     const knownVersion = [{game_version: 10104, date_added: 1707307200}, {game_version: 10201, date_added: 1709172000}, {game_version: 10301, date_added: 1712008800, season_id: 1}, {game_version: 10302, date_added: 1714114800, season_id: 1 },{game_version: 10400, date_added: 1715151600, season_id: 1},{game_version: 10500, date_added: 1718089200, season_id: 1}, {game_version: 10601, date_added: 1721707200, season_id: 1},{game_version: 10602, date_added: 1722927780, season_id: 1},{game_version: 10700, date_added: 1725350580, season_id: 1},{game_version: 10801, date_added: 1727755200, season_id: 1},{game_version: 10901, date_added: 1730185200, season_id: 1} , {game_version: 11001, date_added: 1734411600, season_id: 1}, {game_version: 11100, date_added: 1736827200, season_id: 1},{game_version: 11201, date_added:1739851200, season_id: 1},{game_version: 11300, date_added: 1741669200, season_id: 1},{game_version: 20001, date_added: 1743480000, season_id: 2}, {game_version: 20002, date_added: 1744866180, season_id: 2},{game_version: 20100, date_added: 1747119600, season_id: 2},{game_version: 20200, date_added: 1748925000, season_id: 2}, {game_version: 20301, date_added: 1751947200, season_id: 2},{game_version: 20302, date_added: 1753155000, season_id: 2},{game_version: 20400, date_added: 1754368200, season_id: 2},{game_version: 20500, date_added: 1756794600, season_id: 2},{game_version: 20601, date_added: 1760421600, season_id: 2}, {game_version: 20602, date_added: 1761705000, season_id: 2}, {game_version: 20800, date_added: 1764644400, season_id: 2},{game_version: 20801, date_added: 1765852200, season_id: 2},{game_version: 30000, date_added: 1773723600, season_id: 3}, {game_version: 30001, date_added: 1774492200, season_id: 3},{game_version: 30002, date_added: 1776319200, season_id: 3}, {game_version: 30101, date: 1779948000, season_id: 3}, {game_version: 30201, date_added: 1787198400, season_id: 3} 
+     const knownVersion = [{game_version: 10104, date_added: 1707307200, season_id: 0}, {game_version: 10201, date_added: 1709172000, season_id: 0}, {game_version: 10301, date_added: 1712008800, season_id: 1}, {game_version: 10302, date_added: 1714114800, season_id: 1 },{game_version: 10400, date_added: 1715151600, season_id: 1},{game_version: 10500, date_added: 1718089200, season_id: 1}, {game_version: 10601, date_added: 1721707200, season_id: 1},{game_version: 10602, date_added: 1722927780, season_id: 1},{game_version: 10700, date_added: 1725350580, season_id: 1},{game_version: 10801, date_added: 1727755200, season_id: 1},{game_version: 10901, date_added: 1730185200, season_id: 1} , {game_version: 11001, date_added: 1734411600, season_id: 1}, {game_version: 11100, date_added: 1736827200, season_id: 1},{game_version: 11201, date_added:1739851200, season_id: 1},{game_version: 11300, date_added: 1741669200, season_id: 1},{game_version: 20001, date_added: 1743480000, season_id: 2}, {game_version: 20002, date_added: 1744866180, season_id: 2},{game_version: 20100, date_added: 1747119600, season_id: 2},{game_version: 20200, date_added: 1748925000, season_id: 2}, {game_version: 20301, date_added: 1751947200, season_id: 2},{game_version: 20302, date_added: 1753155000, season_id: 2},{game_version: 20400, date_added: 1754368200, season_id: 2},{game_version: 20500, date_added: 1756794600, season_id: 2},{game_version: 20601, date_added: 1760421600, season_id: 2}, {game_version: 20602, date_added: 1761705000, season_id: 2}, {game_version: 20800, date_added: 1764644400, season_id: 2},{game_version: 20801, date_added: 1765852200, season_id: 2},{game_version: 30000, date_added: 1773723600, season_id: 3}, {game_version: 30001, date_added: 1774492200, season_id: 3},{game_version: 30002, date_added: 1776319200, season_id: 3}, {game_version: 30101, date: 1779948000, season_id: 3}, {game_version: 30201, date_added: 1787198400, season_id: 3} 
       ]
       const versions = db.prepare( `INSERT INTO t8versions (game_version, patch_date, season_id) VALUES (?,?,?) ON CONFLICT(game_version) DO NOTHING`)
      for (const version of knownVersions)
@@ -285,12 +285,26 @@ app.post('/api/t8/game-version-seed', (req, res) => {
 
 app.post(`/api/t8/add-seasons`, (req, res) => {
    try {
-      const knonwSeasons =[{}
-
+      const knownSeasons = [{id: 0, start_game_version: 10104}, {id: 1, start_game_version: 10301 }, {id: 2, start_game_version: 20001}, {id: 3, start_game_version: 30000}
       ]
-      const seasons = db.prepare(/*SQL statement here */)
+      const seasons = db.prepare(`INSERT INTO t8seasons (id, start_game_version) VALUES (?,?) ON CONFLICT(id) DO NOTHING`)
+      for (const season of knownSeasons)
+      seasons.run(season.id, season.game_start_version)
    }
-   catch {}
+   catch (err){
+      console.error(`Error adding seasons table`)
+      console.log(`Error adding seasons table`)
+      res.status(500).json({error: err.message});
+   }
+   }
+);
+
+app.post(`api/t8/add-rank-seasons`, (req, res) => {
+   try {
+      const knownRankSeason = [{ 
+
+      }]
+   }
 })
 
 

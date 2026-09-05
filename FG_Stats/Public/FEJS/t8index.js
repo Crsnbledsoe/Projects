@@ -7,7 +7,7 @@ document.getElementById("addRanks").addEventListener("click", addRanks);
 
 document.getElementById("addVersions").addEventListener("click", addVersions);
 
-document.getElementById("addSeason").addEventListener("click", addVersions);
+document.getElementById("addRankSeasons").addEventListener("click", addRankSeasons);
 
 
 
@@ -57,3 +57,12 @@ async function addSeasons(){
         }
     })
 };
+
+async function addRankSeasons(){
+    const respons = await fetch(`api/t8/add-rank-seasons`, {
+        method: `POST`,
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+}
