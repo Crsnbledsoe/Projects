@@ -299,6 +299,8 @@ app.post(`/api/t8/add-seasons`, (req, res) => {
    }
 );
 
+//just a test
+
 app.post(`api/t8/add-rank-seasons`, (req, res) => {
    try {
       const knownRankSeason = [{ rank_id: 0, season_id: 0, points_to_promote: 0},{ rank_id: 0, season_id: 1, points_to_promote: 0}, { rank_id: 1, season_id: 2, points_to_promote: 0}, { rank_id: 1, season_id: 3, points_to_promote: 0},
