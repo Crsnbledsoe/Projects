@@ -301,11 +301,22 @@ app.post(`/api/t8/add-seasons`, (req, res) => {
 
 app.post(`api/t8/add-rank-seasons`, (req, res) => {
    try {
-      const knownRankSeason = [{ 
+      const knownRankSeason = [{ rank_id: 0, season_id: 0, points_to_promote: 0},{ rank_id: 0, season_id: 1, points_to_promote: 0}, { rank_id: 1, season_id: 2, points_to_promote: 0}, { rank_id: 1, season_id: 3, points_to_promote: 0},
+       { rank_id: 1, season_id: 0, points_to_promote: 400} , { rank_id: 0, season_id: 1, points_to_promote: 400}, { rank_id: 1, season_id: 2, points_to_promote: 4000}, {rank_id: 1, season_id: 3, points_to_promote: 4000},
+       {rank_id: 2, season_id: 0, points_to_promote: 1000}, {rank_id: 2, season_id: 1, points_to_promote: 1000},{ rank_id: 2, season_id: 2, points_to_promote: 8000}, {rank_id: 2, season_id: 3, points_to_promote: 8000},
+       {rank_id: 3, season_id: 0, points_to_promote: 1600}, {rank_id: 3, season_id: 1, points_to_promote: 1600},{rank_id: 3, season_id: 2, points_to_promote: 1201},{rank_id: 3, season_id: 3, points_to_promote: 1200},
+       {rank_id: 4, season_id: 0, points_to_promote: 2600}, {rank_id: 4, season_id: 1, points_to_promote: 2600}, {rank_id: 4, season_id: 2, points_to_promote: 17002}, {rank_id: 4, season_id: 3, points_to_promote: 17000},
+       {rank_id: 5, season_id: 0, points_to_promote: 3400}, {rank_id: 5, season_id: 1, points_to_promote: 3400}, {rank_id: 5, season_id: 2, points_to_promote: 22003}, {rank_id: 5, season_id: 3, points_to_promote: 22000},
+       {rank_id: 6, season_id: 0, points_to_promote: 4200}, {rank_id: 6, season_id: 1, points_to_promote: 4200}, {rank_id: 6, season_id: 2, points_to_promote: 27004},{rank_id: 6, season_id: 3, points_to_promote: 27000},
+       {rank_id: 7, season_id: 0, points_to_promote: 5400}, {rank_id: 7, season_id: 1, points_to_promote: 5400}, {rank_id: 7, season_id: 2, points_to_promote: 33005}, {rank_id: 7, season_id: 3, points_to_promote: 33000}, 
 
-      }]
+ 
+      ]
+
+      }
+   catch{}
    }
-})
+)
 
 
 app.get('/Tekken8.html', (req, res) => {
