@@ -22,7 +22,7 @@ db.exec(`CREATE TABLE IF NOT EXISTS t8versions (
     game_version INTEGER PRIMARY KEY,
     patch_date INTEGER,
     season_id INTEGER,
-    FOREIGN KEY (season_id) REFERENCES,
+    FOREIGN KEY (season_id) REFERENCES
     t8seasons(id)
     )`);
     
@@ -65,7 +65,7 @@ db.exec(`CREATE TABLE IF NOT EXISTS t8seasons (
    start_game_version INTEGER,
    FOREIGN KEY (start_game_version) REFERENCES
    t8versions(game_versions)
-   )`)
+   )`);
 
    db.exec(`CREATE TABLE IF NOT EXISTS t8rankseasons(
       rank_id INTEGER,
@@ -76,4 +76,4 @@ db.exec(`CREATE TABLE IF NOT EXISTS t8seasons (
       FOREIGN KEY (season_id) REFERENCES t8seasons(id)
       )`
 
-   )
+   );
