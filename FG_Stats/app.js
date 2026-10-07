@@ -324,6 +324,24 @@ app.post(`api/t8/add-rank-seasons`, (req, res) => {
        {rank_id: 18, season_id: 0, points_to_promote: 31500}, {rank_id: 18, season_id: 1, points_to_promote: 31500}, {rank_id: 18, season_id: 2, points_to_promote: 114016}, {rank_id: 18, season_id: 3, points_to_promote: 114000}, 
        {rank_id: 19, season_id: 0, points_to_promote: 36500}, {rank_id: 19, season_id: 1, points_to_promote: 36500}, {rank_id: 19, season_id: 2, points_to_promote: 125017}, {rank_id: 19, season_id: 3, points_to_promote: 125000}, 
        {rank_id: 20, season_id: 0, points_to_promote: 41100}, {rank_id: 20, season_id: 1, points_to_promote: 41100}, {rank_id: 20, season_id: 2, points_to_promote: 136018}, {rank_id: 20, season_id: 3, points_to_promote: 136000}, 
+       {rank_id: 21, season_id: 0, points_to_promote: 45700}, {rank_id: 21, season_id: 1, points_to_promote: 45700}, {rank_id: 21, season_id: 2, points_to_promote: 147019}, {rank_id: 21, season_id: 3, points_to_promote: 147000}, 
+       {rank_id: 22, season_id: 0, points_to_promote: 52300}, {rank_id: 22, season_id: 1, points_to_promote: 52300}, {rank_id: 22, season_id: 2, points_to_promote: 159020}, {rank_id: 22, season_id: 3, points_to_promote: 159000}, 
+       {rank_id: 23, season_id: 0, points_to_promote: 58500}, {rank_id: 23, season_id: 1, points_to_promote: 58500}, {rank_id: 23, season_id: 2, points_to_promote: 171021}, {rank_id: 23, season_id: 3, points_to_promote: 171000}, 
+       {rank_id: 24, season_id: 0, points_to_promote: 64700}, {rank_id: 24, season_id: 1, points_to_promote: 64700}, {rank_id: 24, season_id: 2, points_to_promote: 183022}, {rank_id: 24, season_id: 3, points_to_promote: 183000}, 
+       {rank_id: 25, season_id: 0, points_to_promote: 70900}, {rank_id: 25, season_id: 1, points_to_promote: 70900}, {rank_id: 25, season_id: 2, points_to_promote: 195023}, {rank_id: 25, season_id: 3, points_to_promote: 195000}, 
+       {rank_id: 26, season_id: 0, points_to_promote: 79100}, {rank_id: 26, season_id: 1, points_to_promote: 79100}, {rank_id: 26, season_id: 2, points_to_promote: 208024}, {rank_id: 26, season_id: 3, points_to_promote: 208000}, 
+       {rank_id: 27, season_id: 0, points_to_promote: 87900}, {rank_id: 27, season_id: 1, points_to_promote: 87900}, {rank_id: 27, season_id: 2, points_to_promote: 222025}, {rank_id: 27, season_id: 3, points_to_promote: 222000}, 
+       {rank_id: 28, season_id: 0, points_to_promote: 97300}, {rank_id: 28, season_id: 1, points_to_promote: 97300}, {rank_id: 28, season_id: 2, points_to_promote: 237026}, {rank_id: 28, season_id: 3, points_to_promote: 237026}, 
+       {rank_id: 29, season_id: 0, points_to_promote: 109700}, {rank_id: 29, season_id: 1, points_to_promote: 109700}, {rank_id: 29, season_id: 2, points_to_promote: 253027}, {rank_id: 28, season_id: 3, points_to_promote: 253000}, 
+       {rank_id: 30, season_id: 0}, {rank_id: 30, season_id: 1}, {rank_id: 30, season_id: 2, points_to_promote: 308028}, {rank_id: 30, season_id: 3, points_to_promote: 275000}, 
+       {rank_id: 31, season_id: 0}, {rank_id: 31, season_id: 1}, {rank_id: 31, season_id: 2, points_to_promote: 330029}, {rank_id: 31, season_id: 3, points_to_promote: 295000}, 
+       {rank_id: 32, season_id: 0}, {rank_id: 32, season_id: 1}, {rank_id: 32, season_id: 2, points_to_promote: 352030}, {rank_id: 32, season_id: 3, points_to_promote: 315000}, 
+       {rank_id: 33, season_id: 0}, {rank_id: 33, season_id: 1}, {rank_id: 33, season_id: 2, points_to_promote: 374031}, {rank_id: 33, season_id: 3, points_to_promote: 335000}, 
+       {rank_id: 34, season_id: 0}, {rank_id: 34, season_id: 1}, {rank_id: 34, season_id: 2, points_to_promote: 396032}, {rank_id: 34, season_id: 3, points_to_promote: 355000}, 
+       {rank_id: 35, season_id: 0}, {rank_id: 35, season_id: 1}, {rank_id: 35, season_id: 2, points_to_promote: 418033}, {rank_id: 35, season_id: 3, points_to_promote: 375000}, 
+       {rank_id: 36, season_id: 0}, {rank_id: 36, season_id: 1}, {rank_id: 36, season_id: 2, points_to_promote: 440034}, {rank_id: 36, season_id: 3, points_to_promote: 400000}, 
+       {rank_id: 37, season_id: 0}, {rank_id: 37, season_id: 1}, {rank_id: 37, season_id: 2, points_to_promote: 462035}, {rank_id: 37, season_id: 3, points_to_promote: 430000}, 
+
 
  
       ]

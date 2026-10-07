@@ -8,7 +8,7 @@ db.exec(`CREATE TABLE IF NOT EXISTS t8characters (
 
 
 db.exec(`CREATE TABLE IF NOT EXISTS t8ranks (
-   rank_id INTEGER PRIMARY KEY ,
+   rank_id INTEGER PRIMARY KEY,
    en_name TEXT,
    ja_name TEXT,
    slug TEXT,
@@ -18,11 +18,11 @@ db.exec(`CREATE TABLE IF NOT EXISTS t8ranks (
 )`);
 
 //ranks table
-db.exec(`CREATE TABLE IF NOT EXISTS t8versions
-    game_version INTEGER PRIMARY KEY
-    patch_date INTEGER
-    season_id INTEGER
-    FOREIGN KEY (season_id) REFERENCES 
+db.exec(`CREATE TABLE IF NOT EXISTS t8versions (
+    game_version INTEGER PRIMARY KEY,
+    patch_date INTEGER,
+    season_id INTEGER,
+    FOREIGN KEY (season_id) REFERENCES,
     t8seasons(id)
     )`);
     
