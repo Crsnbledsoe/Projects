@@ -299,7 +299,6 @@ app.post(`/api/t8/add-seasons`, (req, res) => {
    }
 );
 
-//just a test
 
 app.post(`api/t8/add-rank-seasons`, (req, res) => {
    try {
@@ -347,9 +346,24 @@ app.post(`api/t8/add-rank-seasons`, (req, res) => {
       ]
 
       }
-   catch{}
+   catch(err){
+      console.error(`Error adding rank-seasons stable`)
+      console.log(`Error adding rank-seasons table`)
+      res.status(500).json({error: err.message});
    }
-)
+   }
+);
+
+app.post(`api/t8/add-t8archetypes`, (req, res) => {
+   try {
+      const knownt8archetypes = [{archetype_id: 0, archetype_name: "All-Rounder"}, {archetype_id: 1, archetype_name: "Evasive"}, {archetype_id: 2, archetype_name: "Grappler"}, {archetype_id: 3, archetype_name: "Mishima"}, {archetype_id: 4, archetype_name: "Mix-Up"}, {archetype_id: 5, archetype_name: "Power"}, {archetype_id: 6, archetype_name: "Pressure"}, {archetype_id: 7, archetype_name: "Rushdown"}, {archetype_id: 8, archetype_name: "Stance"}, {archetype_id: 9, archetype_name: "Stance"}, {archetype_id: 10, archetype_name: "Zoner"}]
+   }
+   catch(err){
+      console.error(`Error adding t8archetypes`)
+      console.log(`Error adding t8archetypes table`)
+      res.status(500).json({error: err.message})
+   }
+});
 
 
 app.get('/Tekken8.html', (req, res) => {

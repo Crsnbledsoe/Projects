@@ -67,13 +67,17 @@ db.exec(`CREATE TABLE IF NOT EXISTS t8seasons (
    t8versions(game_versions)
    )`);
 
-   db.exec(`CREATE TABLE IF NOT EXISTS t8rankseasons(
+   db.exec(`CREATE TABLE IF NOT EXISTS t8rankseasons (
       rank_id INTEGER,
       season_id INTEGER,
       points_to_promote INTEGER,
       PRIMARY KEY(rank_id, season_id),
       FOREIGN KEY(rank_id) REFERENCES t8ranks(rank_id),
       FOREIGN KEY (season_id) REFERENCES t8seasons(id)
-      )`
+      )`);
 
-   );
+//create table of t8 archetypes
+db.exec(`CREATE TABLE IF NOT EXISTS t8archetypes(
+   archetype_id INTEGER,
+   archetype_name TEXT 
+   f_archetype TEXT)`);
