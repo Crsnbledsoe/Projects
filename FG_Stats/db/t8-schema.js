@@ -3,7 +3,10 @@ const db = require('./connection');
 db.exec(`CREATE TABLE IF NOT EXISTS t8characters (
   char_id INTEGER PRIMARY KEY,
   char_name TEXT,
-  game_version INTEGER
+  game_version INTEGER,
+  archetype_id INTEGER,
+  FOREIGN KEY (archetype_id) REFERENCES
+  t8archetypes(archetype_id);
 )`);
 
 
