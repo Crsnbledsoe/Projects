@@ -31,7 +31,7 @@ db.exec(`CREATE TABLE IF NOT EXISTS t8versions (
     
 
 //initialize a table to track matches
-db.exec(`CREATE TABLE IF NOT EXISTS t8matchesnew (
+db.exec(`CREATE TABLE IF NOT EXISTS t8matches (
 battle_id TEXT PRIMARY KEY,
 battle_at INTEGER,
 battle_type INTEGER, 
