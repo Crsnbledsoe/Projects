@@ -238,7 +238,7 @@ app.post('/api/t8/addcharacters', (req, res) => {
       {char_id: 44, char_name: "Armor King", game_version: 20601, archetype_id: 2}, 
       {char_id: 45, char_name: "Miary Zo", game_version: 20800, archetype_id: 2}, 
       {char_id: 46, char_name: "Kunimitsu", game_version: 30101, archetype_id: 8}]
-      console.log(knownCharacters);
+      //console.log(knownCharacters);
    const characters = db.prepare('INSERT INTO t8characters(char_id, char_name, game_version, archetype_id) VALUES(?,?,?,?) ON CONFLICT(char_id) DO UPDATE SET char_id = excluded.char_id')
    for (const character of knownCharacters) {
    characters.run(character.char_id,character.char_name, character.game_version, character.archetype_id)
@@ -295,10 +295,11 @@ app.post('/api/t8/rank-seed', (req, res) => {
          {rank_id: 37, en_name: "Tekken God of Destruction ∞", ja_name: "破壊神∞", slug: "tekken-god-of-destruction-∞", color: "God of Destruction", division: "God of Destruction", f_rank: ""},
 
       ]
-      const patches = db.prepare(`INSERT  INTO t8ranks(rank_id), en_name, ja_name, slug, color, division, f_rank) VALUES(?,?,?,?,?,?,?)`)
+      const ranks = db.prepare(`INSERT  INTO t8ranks(rank_id, en_name, ja_name, slug, color, division, f_rank) VALUES(?,?,?,?,?,?,?)`)
    for(const rank of knownRanks) {
-      rank.rank_id, rank.en_name, rank.ja_name, rank.slug, rank.color, rank.division, rank.f_rank
+      ranks.run(rank.rank_id, rank.en_name, rank.ja_name, rank.slug, rank.color, rank.division, rank.f_rank)
    }
+      res.send("ranks added succesfully")
    }
    catch(err){
       console.error(`Error adding ranks to t8ranks table`);
@@ -314,7 +315,7 @@ app.post('/api/t8/game-version-seed', (req, res) => {
      const knownVersion = [{game_version: 10104, date_added: 1707307200, season_id: 0}, {game_version: 10201, date_added: 1709172000, season_id: 0}, {game_version: 10301, date_added: 1712008800, season_id: 1}, {game_version: 10302, date_added: 1714114800, season_id: 1 },{game_version: 10400, date_added: 1715151600, season_id: 1},{game_version: 10500, date_added: 1718089200, season_id: 1}, {game_version: 10601, date_added: 1721707200, season_id: 1},{game_version: 10602, date_added: 1722927780, season_id: 1},{game_version: 10700, date_added: 1725350580, season_id: 1},{game_version: 10801, date_added: 1727755200, season_id: 1},{game_version: 10901, date_added: 1730185200, season_id: 1} , {game_version: 11001, date_added: 1734411600, season_id: 1}, {game_version: 11100, date_added: 1736827200, season_id: 1},{game_version: 11201, date_added:1739851200, season_id: 1},{game_version: 11300, date_added: 1741669200, season_id: 1},{game_version: 20001, date_added: 1743480000, season_id: 2}, {game_version: 20002, date_added: 1744866180, season_id: 2},{game_version: 20100, date_added: 1747119600, season_id: 2},{game_version: 20200, date_added: 1748925000, season_id: 2}, {game_version: 20301, date_added: 1751947200, season_id: 2},{game_version: 20302, date_added: 1753155000, season_id: 2},{game_version: 20400, date_added: 1754368200, season_id: 2},{game_version: 20500, date_added: 1756794600, season_id: 2},{game_version: 20601, date_added: 1760421600, season_id: 2}, {game_version: 20602, date_added: 1761705000, season_id: 2}, {game_version: 20800, date_added: 1764644400, season_id: 2},{game_version: 20801, date_added: 1765852200, season_id: 2},{game_version: 30000, date_added: 1773723600, season_id: 3}, {game_version: 30001, date_added: 1774492200, season_id: 3},{game_version: 30002, date_added: 1776319200, season_id: 3}, {game_version: 30101, date: 1779948000, season_id: 3}, {game_version: 30201, date_added: 1787198400, season_id: 3} 
       ]
       const versions = db.prepare( `INSERT INTO t8versions (game_version, patch_date, season_id) VALUES (?,?,?) ON CONFLICT(game_version) DO NOTHING`)
-     for (const version of knownVersions)
+     for (const version of knownVersion)
       versions.run(version.game_version, version.date_added, version.season_id)
    }
    catch(err){

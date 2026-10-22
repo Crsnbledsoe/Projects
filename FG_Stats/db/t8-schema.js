@@ -24,9 +24,7 @@ f_rank TEXT
 db.exec(`CREATE TABLE IF NOT EXISTS t8versions (
 game_version INTEGER PRIMARY KEY,
 patch_date INTEGER,
-season_id INTEGER,
-FOREIGN KEY (season_id) REFERENCES
-t8seasons(id)
+season_id INTEGER
 )`);
     
 
@@ -77,7 +75,7 @@ db.exec(`CREATE TABLE IF NOT EXISTS t8seasons (
    id INTEGER PRIMARY KEY,
    start_game_version INTEGER,
    FOREIGN KEY (start_game_version) REFERENCES
-   t8versions(game_versions)
+   t8versions(game_version)
    )`);
 
    db.exec(`CREATE TABLE IF NOT EXISTS t8rankseasons (
