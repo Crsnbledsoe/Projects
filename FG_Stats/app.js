@@ -194,7 +194,7 @@ res.status(500).json({error: err.message});
 
 
 //run once to insert character ids, names, and patch added
-app.post('api/t8/add-t8characters', (req, res) => {
+app.post('/api/t8/addcharacters', (req, res) => {
    try{
    const knownCharacters = [
       {char_id: 0, char_name: "Paul", game_version: 10000, archetype_id: 5}, 

@@ -28,7 +28,7 @@ const response = await fetch('/api/t8/fetch', {
 
 // 5JB7NdRfYTBr is polaris id for infitity rank player
 async function addChars() {
-    const response = await fetch('add-t8characters', {
+    const response = await fetch('/api/t8/addcharacters', {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
