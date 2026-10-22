@@ -31,14 +31,17 @@ db.exec(`CREATE TABLE IF NOT EXISTS t8versions (
     
 
 //initialize a table to track matches
-db.exec(`CREATE TABLE IF NOT EXISTS t8matches (
+db.exec(`CREATE TABLE IF NOT EXISTS t8matchesnew (
 battle_id TEXT PRIMARY KEY,
 battle_at INTEGER,
 battle_type INTEGER, 
 game_version INTEGER,
+FOREIGN KEY (game_version) REFERENCES
+t8versions(game_version),
 p1_polaris_id TEXT, 
 p1_user_id INTEGER, 
 p1_chara_id INTEGER,
+FOREIGN KEY (p1_chara_id) REFERENCES t8characters(char_id),
 p1_rank_id INTEGER, 
 p1_rating_before INTEGER, 
 p1_rating_change INTEGER, 
@@ -46,6 +49,7 @@ p1_rounds INTEGER,
 p2_polaris_id TEXT, 
 p2_user_id INTEGER, 
 p2_chara_id INTEGER, 
+FOREIGN KEY (p2_chara_id) REFERENCES t8characters(char_id),
 p2_rank_id INTEGER, 
 p2_rating_before INTEGER, 
 p2_rating_change INTEGER, 
