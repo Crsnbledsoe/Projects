@@ -13,7 +13,6 @@ document.getElementById("addRankSeasons").addEventListener("click", addRankSeaso
 
 document.getElementById("addt8Archetypes").addEventListener("click", addt8Archetypes);
 
-document.getElementById("addt8characters").addEventListener("click", addt8characters);
 
 
 
@@ -34,7 +33,7 @@ async function addChars() {
             "Content-Type": "application/json",
         }
     })
-}
+};
 
 async function addRanks() {
     const response = await fetch('/api/t8/rank-seed', {
@@ -93,11 +92,3 @@ async function addt8Archetypes(){
 };
 
 
-async function addt8characters() {
-    const response = await fetch(`api/t8/add-t8characters`, {
-        method: `POST`,
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-}
