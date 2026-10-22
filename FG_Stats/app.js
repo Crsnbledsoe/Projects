@@ -210,7 +210,35 @@ app.post('/api/t8/addcharacters', (req, res) => {
       {char_id: 10, char_name:"Jack-8", game_version: 10000, archetype_id: 5},
       {char_id: 11, char_name: "Asuka", game_version: 10000, archetype_id: 0},
       {char_id: 12, char_name: "Devil Jin", game_version: 10000, archetype_id: 3},
-      {char_id: 13, char_name: "Feng", game_version: 10000, archetype_id: 0}, {char_id: 14, char_name: "Lili", game_version: 10000, archetype_id: 1}, {char_id: 15, char_name: "Dragunov", game_version: 10000, archetype_id: 2}, {char_id: 16, char_name: "Leo", game_version: 10000, archetype_id: 0}, {char_id: 17, char_name: "Lars", game_version: 10000, archetype_id: 0}, {char_id: 18, char_name: "Alisa", game_version: 10000, archetype_id: 7}, {char_id: 19, char_name: "Claudio", game_version: 10000, archetype_id: 9}, {char_id: 20, char_name: "Shaheen", game_version: 10000, archetype_id: 7}, {char_id: 21, char_name: "Nina", game_version: 10000, archetype_id: 8}, {char_id: 22, char_name: "Lee",game_version: 10000, archetype_id: 7}, {char_id: 23, char_name: "Kuma", game_version: 10000, archetype_id: 2}, {char_id: 24, char_name: "Panda", game_version: 10000, archetype_id: 2}, {char_id: 28, char_name: "Zafina", game_version: 10000, archetype_id: 1}, {char_id: 29, char_name: "Leroy",game_version: 10000, archetype_id: 9}, {char_id: 32, char_name: "Jun", game_version: 10000, archetype_id: 1}, {char_id: 33, char_name: "Reina", game_version: 10000, archetype_id: 3 }, {char_id: 34, char_name: "Azucena", game_version: 10000, archetype_id: 1}, {char_id: 35, char_name: "Victor", game_version: 10000, archetype_id: 0}, {char_id: 36, char_name: "Raven", game_version: 10000, archetype_id: 1}, {char_id: 38, char_name: "Eddy", game_version: 10301, archetype_id: 8}, {char_id: 39, char_name: "Lidia", game_version: 10601, archetype_id: 7}, {char_id: 40, char_name: "Heihachi", game_version: 10801, archetype_id: 3}, {char_id: 41, char_name: "Clive", game_version: 11001, archetype_id: 7}, {char_id: 42, char_name: "Anna", game_version: 20001, archetype_id: 4}, {char_id: 43, char_name: "Fahkumram", game_version: 20301, archetype_id: 6}, {char_id: 44, char_name: "Armor King", game_version: 20601, archetype_id: 2}, {char_id: 45, char_name: "Miary Zo", game_version: 20800, archetype_id: 2}, {char_id: 46, char_name: "Kunimitsu", game_version: 30101}]
+      {char_id: 13, char_name: "Feng", game_version: 10000, archetype_id: 0}, 
+      {char_id: 14, char_name: "Lili", game_version: 10000, archetype_id: 1}, 
+      {char_id: 15, char_name: "Dragunov", game_version: 10000, archetype_id: 2}, 
+      {char_id: 16, char_name: "Leo", game_version: 10000, archetype_id: 0}, 
+      {char_id: 17, char_name: "Lars", game_version: 10000, archetype_id: 0}, 
+      {char_id: 18, char_name: "Alisa", game_version: 10000, archetype_id: 7}, 
+      {char_id: 19, char_name: "Claudio", game_version: 10000, archetype_id: 9}, 
+      {char_id: 20, char_name: "Shaheen", game_version: 10000, archetype_id: 7}, 
+      {char_id: 21, char_name: "Nina", game_version: 10000, archetype_id: 8},
+      {char_id: 22, char_name: "Lee",game_version: 10000, archetype_id: 7},
+      {char_id: 23, char_name: "Kuma", game_version: 10000, archetype_id: 2}, 
+      {char_id: 24, char_name: "Panda", game_version: 10000, archetype_id: 2}, 
+      {char_id: 28, char_name: "Zafina", game_version: 10000, archetype_id: 1}, 
+      {char_id: 29, char_name: "Leroy",game_version: 10000, archetype_id: 9}, 
+      {char_id: 32, char_name: "Jun", game_version: 10000, archetype_id: 1}, 
+      {char_id: 33, char_name: "Reina", game_version: 10000, archetype_id: 3 },
+      {char_id: 34, char_name: "Azucena", game_version: 10000, archetype_id: 1}, 
+      {char_id: 35, char_name: "Victor", game_version: 10000, archetype_id: 0}, 
+      {char_id: 36, char_name: "Raven", game_version: 10000, archetype_id: 1}, 
+      {char_id: 38, char_name: "Eddy", game_version: 10301, archetype_id: 8}, 
+      {char_id: 39, char_name: "Lidia", game_version: 10601, archetype_id: 7}, 
+      {char_id: 40, char_name: "Heihachi", game_version: 10801, archetype_id: 3}, 
+      {char_id: 41, char_name: "Clive", game_version: 11001, archetype_id: 7}, 
+      {char_id: 42, char_name: "Anna", game_version: 20001, archetype_id: 4}, 
+      {char_id: 43, char_name: "Fahkumram", game_version: 20301, archetype_id: 6}, 
+      {char_id: 44, char_name: "Armor King", game_version: 20601, archetype_id: 2}, 
+      {char_id: 45, char_name: "Miary Zo", game_version: 20800, archetype_id: 2}, 
+      {char_id: 46, char_name: "Kunimitsu", game_version: 30101, archetype_id: 8}]
+      console.log(knownCharacters);
    const characters = db.prepare('INSERT INTO t8characters(char_id, char_name, game_version, archetype_id) VALUES(?,?,?,?) ON CONFLICT(char_id) DO UPDATE SET char_id = excluded.char_id')
    for (const character of knownCharacters) {
    characters.run(character.char_id,character.char_name, character.game_version, character.archetype_id)
