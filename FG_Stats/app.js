@@ -294,7 +294,7 @@ app.post('/api/t8/game-version-seed', (req, res) => {
       console.log(`Error adding patches table`)
       res.status(500).json({error: err.message});
    }
-})
+});
 
 
 app.post(`/api/t8/add-seasons`, (req, res) => {
