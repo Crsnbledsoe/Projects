@@ -343,7 +343,7 @@ app.post(`/api/t8/add-seasons`, (req, res) => {
 );
 
 
-app.post(`api/t8/add-rank-seasons`, (req, res) => {
+app.post(`/api/t8/add-rank-seasons`, (req, res) => {
    try {
       const knownRankSeason = [{ rank_id: 0, season_id: 0, points_to_promote: 0},{ rank_id: 0, season_id: 1, points_to_promote: 0}, { rank_id: 1, season_id: 2, points_to_promote: 0}, { rank_id: 1, season_id: 3, points_to_promote: 0},
        { rank_id: 1, season_id: 0, points_to_promote: 400} , { rank_id: 0, season_id: 1, points_to_promote: 400}, { rank_id: 1, season_id: 2, points_to_promote: 4000}, {rank_id: 1, season_id: 3, points_to_promote: 4000},
@@ -397,7 +397,7 @@ app.post(`api/t8/add-rank-seasons`, (req, res) => {
    }
 );
 
-app.post(`api/t8/add-t8archetypes`, (req, res) => {
+app.post(`/api/t8/add-t8archetypes`, (req, res) => {
    try {
       const knownt8archetypes = [{archetype_id: 0, archetype_name: "All-Rounder"}, {archetype_id: 1, archetype_name: "Evasive"}, {archetype_id: 2, archetype_name: "Grappler"}, {archetype_id: 3, archetype_name: "Mishima"}, {archetype_id: 4, archetype_name: "Mix-Up"}, {archetype_id: 5, archetype_name: "Power"}, {archetype_id: 6, archetype_name: "Pressure"}, {archetype_id: 7, archetype_name: "Rushdown"}, {archetype_id: 8, archetype_name: "Stance"}, {archetype_id: 9, archetype_name: "Zoner"}
       ]

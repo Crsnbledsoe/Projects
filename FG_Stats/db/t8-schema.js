@@ -89,7 +89,7 @@ db.exec(`CREATE TABLE IF NOT EXISTS t8seasons (
 
 //create table of t8 archetypes
 db.exec(`CREATE TABLE IF NOT EXISTS t8archetypes (
-   archetype_id INTEGER,
+   archetype_id INTEGER PRIMARY KEY,
    archetype_name TEXT, 
    f_archetype TEXT
    )`);
