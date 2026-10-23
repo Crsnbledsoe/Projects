@@ -1,7 +1,7 @@
 //gets matches
 document.getElementById("getMatches").addEventListener("click", getMatches);
 
-document.getElementById("addChars").addEventListener("click", addChars);
+document.getElementById("addchars").addEventListener("click", addChars);
 
 document.getElementById("addRanks").addEventListener("click", addRanks);
 

@@ -383,12 +383,12 @@ app.post(`/api/t8/add-rank-seasons`, (req, res) => {
        {rank_id: 35, season_id: 0}, {rank_id: 35, season_id: 1}, {rank_id: 35, season_id: 2, points_to_promote: 418033}, {rank_id: 35, season_id: 3, points_to_promote: 375000}, 
        {rank_id: 36, season_id: 0}, {rank_id: 36, season_id: 1}, {rank_id: 36, season_id: 2, points_to_promote: 440034}, {rank_id: 36, season_id: 3, points_to_promote: 400000}, 
        {rank_id: 37, season_id: 0}, {rank_id: 37, season_id: 1}, {rank_id: 37, season_id: 2, points_to_promote: 462035}, {rank_id: 37, season_id: 3, points_to_promote: 430000}, 
-
-
- 
       ]
-
-      }
+      const rankseasons = db.prepare(`INSERT INTO t8rankseasons(rank_id, season_id, points_to_promote) VALUES (?,?,?) ON CONFLICT(rank_id, season_id) DO NOTHING`)
+      for (const rankseason of knownRankSeason)
+         rankseasons.run(rankseason.rank_id,rankseason.season_id,rankseason.points_to_promote)
+      console.log("rank season table seeded")
+   }
    catch(err){
       console.error(`Error adding rank-seasons stable`)
       console.log(`Error adding rank-seasons table`)
