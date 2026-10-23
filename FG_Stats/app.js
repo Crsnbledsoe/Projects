@@ -399,7 +399,12 @@ app.post(`api/t8/add-rank-seasons`, (req, res) => {
 
 app.post(`api/t8/add-t8archetypes`, (req, res) => {
    try {
-      const knownt8archetypes = [{archetype_id: 0, archetype_name: "All-Rounder"}, {archetype_id: 1, archetype_name: "Evasive"}, {archetype_id: 2, archetype_name: "Grappler"}, {archetype_id: 3, archetype_name: "Mishima"}, {archetype_id: 4, archetype_name: "Mix-Up"}, {archetype_id: 5, archetype_name: "Power"}, {archetype_id: 6, archetype_name: "Pressure"}, {archetype_id: 7, archetype_name: "Rushdown"}, {archetype_id: 8, archetype_name: "Stance"}, {archetype_id: 9, archetype_name: "Zoner"}]
+      const knownt8archetypes = [{archetype_id: 0, archetype_name: "All-Rounder"}, {archetype_id: 1, archetype_name: "Evasive"}, {archetype_id: 2, archetype_name: "Grappler"}, {archetype_id: 3, archetype_name: "Mishima"}, {archetype_id: 4, archetype_name: "Mix-Up"}, {archetype_id: 5, archetype_name: "Power"}, {archetype_id: 6, archetype_name: "Pressure"}, {archetype_id: 7, archetype_name: "Rushdown"}, {archetype_id: 8, archetype_name: "Stance"}, {archetype_id: 9, archetype_name: "Zoner"}
+      ]
+      const archetypes = db.prepare(`INSERT INTO t8archetypes(archetype_id, archetype_name, f_archetype) VALUES (?,?,?) ON CONFLICT(archetype_id) DO NOTHING`)
+      for (const archetype of knownt8archetypes)
+         archetypes.run(archetype.archetype_id, archetype.archetype_name, archetype.f_archetype)
+      console.log("archetypes table seeded")
    }
    catch(err){
       console.error(`Error adding t8archetypes`)

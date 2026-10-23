@@ -11,7 +11,7 @@ document.getElementById("addt8Seasons").addEventListener("click", addSeasons);
 
 document.getElementById("addRankSeasons").addEventListener("click", addRankSeasons);
 
-document.getElementById("addt8Archetypes").addEventListener("click", addt8Archetypes);
+document.getElementById("addt8archetypes").addEventListener("click", addt8Archetypes);
 
 
 
