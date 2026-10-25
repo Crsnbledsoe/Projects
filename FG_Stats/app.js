@@ -177,9 +177,9 @@ app.post('/api/t8/fetch', async (req, res) => {
             console.log('gmrr')
       const t8matches = await response.json();
       const stmt = db.prepare('INSERT INTO t8players (polaris_id, user_id, username) VALUES (?, ?, ?) ON CONFLICT(polaris_id) DO UPDATE SET username = excluded.username');
-      const matches = db.prepare('INSERT INTO t8matches (battle_id, battle_at, battle_type, game_version, p1_polaris_id, p1_user_id, p1_chara_id, p1_rank_id, p1_rating_before, p1_rating_change, p1_rounds, p2_polaris_id, p2_user_id, p2_chara_id, p2_rank_id, p2_rating_before, p2_rating_change, p2_rounds, stage_id, winner) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,? ) ON CONFLICT(battle_id) DO NOTHING')
-      for (const match of t8matches) {
-         const { p1_polaris_id, p1_user_id, p1_name, p2_polaris_id, p2_user_id, p2_name, battle_id, battle_at, battle_type, game_version, p1_chara_id, p1_rank: p1_rank_id, p1_rating_before, p1_rating_change, p1_rounds, p2_chara_id, p2_rank: p2_rank_id, p2_rating_before, p2_rating_change, p2_rounds, stage_id, winner} = match
+      const matches = db.prepare('INSERT INTO t8matches (battl) ON CONFLICT(battle_id) DO NOTHING')
+      for (const match of t8matches) {e_id, battle_at, battle_type, game_version, p1_polaris_id, p1_user_id, p1_chara_id, p1_rank_id, p1_rating_before, p1_rating_change, p1_rounds, p2_polaris_id, p2_user_id, p2_chara_id, p2_rank_id, p2_rating_before, p2_rating_change, p2_rounds, stage_id, winner) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,? 
+         const { p1_polaris_id, p1_user_id, p1_name, p2_polaris_id, p2_user_id, p2_name, battle_id, battle_at, battle_type, game_version, p1_chara_id, p1_rank_id, p1_rating_before, p1_rating_change, p1_rounds, p2_chara_id, p2_rank_id, p2_rating_before, p2_rating_change, p2_rounds, stage_id, winner} = match
          stmt.run(p1_polaris_id, p1_user_id, p1_name);
          stmt.run(p2_polaris_id, p2_user_id, p2_name);
          matches.run(battle_id, battle_at, battle_type, game_version, p1_polaris_id, p1_user_id, p1_chara_id, p1_rank_id, p1_rating_before, p1_rating_change, p1_rounds, p2_polaris_id, p2_user_id, p2_chara_id, p2_rank_id, p2_rating_before, p2_rating_change, p2_rounds, stage_id, winner)
@@ -388,6 +388,8 @@ app.post(`/api/t8/add-rank-seasons`, (req, res) => {
       for (const rankseason of knownRankSeason)
          rankseasons.run(rankseason.rank_id,rankseason.season_id,rankseason.points_to_promote)
       console.log("rank season table seeded")
+         res.send('rankseasons seeded');
+
    }
    catch(err){
       console.error(`Error adding rank-seasons stable`)
