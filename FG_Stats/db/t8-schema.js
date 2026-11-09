@@ -54,9 +54,9 @@ constraint unique_match UNIQUE (battle_at,p1_polaris_id,p2_polaris_id),
 
 FOREIGN KEY (game_version) REFERENCES t8versions(game_version),
 FOREIGN KEY (p1_chara_id) REFERENCES t8characters(char_id),
-FOREIGN KEY (p1_rank_id) REFERENCES t8ranks(rank_id),
+FOREIGN KEY (p1_rank) REFERENCES t8ranks(rank_id),
 FOREIGN KEY (p2_chara_id) REFERENCES t8characters(char_id),
-FOREIGN KEY (p2_rank_id) REFERENCES t8ranks(rank_id)
+FOREIGN KEY (p2_rank) REFERENCES t8ranks(rank_id)
 
 
 
