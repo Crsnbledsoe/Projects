@@ -170,6 +170,7 @@ app.get('/loadMore', (req, res) => {
 
 //t8 routes
 app.post('/api/t8/fetch', async (req, res) => {
+   let currentMatch = null
    try{
       console.log('gmrr')
       const beforeParam = Math.floor(Date.now()/1000)
@@ -177,16 +178,18 @@ app.post('/api/t8/fetch', async (req, res) => {
             console.log('gmrr')
       const t8matches = await response.json();
       const stmt = db.prepare('INSERT INTO t8players (polaris_id, user_id, username) VALUES (?, ?, ?) ON CONFLICT(polaris_id) DO UPDATE SET username = excluded.username');
-      const matches = db.prepare('INSERT INTO t8matches (battl) ON CONFLICT(battle_id) DO NOTHING')
-      for (const match of t8matches) {e_id, battle_at, battle_type, game_version, p1_polaris_id, p1_user_id, p1_chara_id, p1_rank_id, p1_rating_before, p1_rating_change, p1_rounds, p2_polaris_id, p2_user_id, p2_chara_id, p2_rank_id, p2_rating_before, p2_rating_change, p2_rounds, stage_id, winner) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,? 
-         const { p1_polaris_id, p1_user_id, p1_name, p2_polaris_id, p2_user_id, p2_name, battle_id, battle_at, battle_type, game_version, p1_chara_id, p1_rank_id, p1_rating_before, p1_rating_change, p1_rounds, p2_chara_id, p2_rank_id, p2_rating_before, p2_rating_change, p2_rounds, stage_id, winner} = match
+      const matches = db.prepare('INSERT INTO t8matches (battle_at, battle_type, game_version, p1_polaris_id, p1_user_id, p1_chara_id, p1_rank_id, p1_rating_before, p1_rating_change, p1_rounds, p2_polaris_id, p2_user_id, p2_chara_id, p2_rank_id, p2_rating_before, p2_rating_change, p2_rounds, stage_id, winner) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,? ) ON CONFLICT(battle_at, p1_polaris_id, p2_polaris_id) DO NOTHING')
+      for (const match of t8matches) {
+         currentMatch = match
+         const { p1_polaris_id, p1_user_id, p1_name, p2_polaris_id, p2_user_id, p2_name, battle_at, battle_type, game_version, p1_chara_id, p1_rank_id, p1_rating_before, p1_rating_change, p1_rounds, p2_chara_id, p2_rank_id, p2_rating_before, p2_rating_change, p2_rounds, stage_id, winner} = match
          stmt.run(p1_polaris_id, p1_user_id, p1_name);
          stmt.run(p2_polaris_id, p2_user_id, p2_name);
-         matches.run(battle_id, battle_at, battle_type, game_version, p1_polaris_id, p1_user_id, p1_chara_id, p1_rank_id, p1_rating_before, p1_rating_change, p1_rounds, p2_polaris_id, p2_user_id, p2_chara_id, p2_rank_id, p2_rating_before, p2_rating_change, p2_rounds, stage_id, winner)
+         matches.run( battle_at, battle_type, game_version, p1_polaris_id, p1_user_id, p1_chara_id, p1_rank_id, p1_rating_before, p1_rating_change, p1_rounds, p2_polaris_id, p2_user_id, p2_chara_id, p2_rank_id, p2_rating_before, p2_rating_change, p2_rounds, stage_id, winner)
       }
       res.send(t8matches)
    } catch(err) {
 console.error(`error retrieving matches`, err)
+console.error(`error on match`, currentMatch)
 console.log(`error retrieving matches.`)
 res.status(500).json({error: err.message});
    }
