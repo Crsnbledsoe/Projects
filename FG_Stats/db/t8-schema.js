@@ -50,7 +50,7 @@ p2_rating_change INTEGER,
 p2_rounds INTEGER,
 stage_id INTEGER, 
 winner INTEGER,
-constraint UNIQUE (battle_at,p1_polaris_id,p2_polaris_id),
+constraint unique_match UNIQUE (battle_at,p1_polaris_id,p2_polaris_id),
 
 FOREIGN KEY (game_version) REFERENCES t8versions(game_version),
 FOREIGN KEY (p1_chara_id) REFERENCES t8characters(char_id),
