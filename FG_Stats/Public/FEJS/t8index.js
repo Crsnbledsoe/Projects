@@ -5,7 +5,7 @@ document.getElementById("getMatches").addEventListener("click", getMatches);
 
 //document.getElementById("addRanks").addEventListener("click", addRanks);
 
-//document.getElementById("addVersions").addEventListener("click", addVersions);
+document.getElementById("addVersions").addEventListener("click", addVersions);
 
 //document.getElementById("addt8Seasons").addEventListener("click", addSeasons);
 
