@@ -7,7 +7,7 @@ document.getElementById("getMatches").addEventListener("click", getMatches);
 
 document.getElementById("addVersions").addEventListener("click", addVersions);
 
-//document.getElementById("addt8Seasons").addEventListener("click", addSeasons);
+document.getElementById("addt8Seasons").addEventListener("click", addSeasons);
 
 //document.getElementById("addRankSeasons").addEventListener("click", addRankSeasons);
 
