@@ -240,7 +240,9 @@ app.post('/api/t8/addcharacters', (req, res) => {
       {char_id: 43, char_name: "Fahkumram", game_version: 20301, archetype_id: 6}, 
       {char_id: 44, char_name: "Armor King", game_version: 20601, archetype_id: 2}, 
       {char_id: 45, char_name: "Miary Zo", game_version: 20800, archetype_id: 2}, 
-      {char_id: 46, char_name: "Kunimitsu", game_version: 30101, archetype_id: 8}]
+      {char_id: 46, char_name: "Kunimitsu", game_version: 30101, archetype_id: 8},
+      {char_id: 47, char_name: "Bob", game_version: 30201, archetype_id: 7}]
+
       //console.log(knownCharacters);
    const characters = db.prepare('INSERT INTO t8characters(char_id, char_name, game_version, archetype_id) VALUES(?,?,?,?) ON CONFLICT(char_id) DO UPDATE SET char_id = excluded.char_id')
    for (const character of knownCharacters) {
