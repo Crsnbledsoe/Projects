@@ -1,17 +1,17 @@
 //gets matches
 document.getElementById("getMatches").addEventListener("click", getMatches);
 
-document.getElementById("addchars").addEventListener("click", addChars);
+//document.getElementById("addChars").addEventListener("click", addChars);
 
-document.getElementById("addRanks").addEventListener("click", addRanks);
+//document.getElementById("addRanks").addEventListener("click", addRanks);
 
-document.getElementById("addVersions").addEventListener("click", addVersions);
+//document.getElementById("addVersions").addEventListener("click", addVersions);
 
-document.getElementById("addt8Seasons").addEventListener("click", addSeasons);
+//document.getElementById("addt8Seasons").addEventListener("click", addSeasons);
 
-document.getElementById("addRankSeasons").addEventListener("click", addRankSeasons);
+//document.getElementById("addRankSeasons").addEventListener("click", addRankSeasons);
 
-document.getElementById("addt8archetypes").addEventListener("click", addt8Archetypes);
+//document.getElementById("addt8archetypes").addEventListener("click", addt8Archetypes);
 
 
 

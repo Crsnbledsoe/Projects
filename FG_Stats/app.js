@@ -15,7 +15,7 @@ console.log(db);
 
 
 db.pragma('journal_mode = WAL');
-db.pragma('foreign_keys = ON');
+db.pragma('foreign_keys = OFF');
 
 require('./db/2xko-schema');
 require('./db/t8-schema');
@@ -198,6 +198,7 @@ res.status(500).json({error: err.message});
 
 //run once to insert character ids, names, and patch added
 app.post('/api/t8/addcharacters', (req, res) => {
+   console.log("add characters backend received reques")
    try{
    const knownCharacters = [
       {char_id: 0, char_name: "Paul", game_version: 10000, archetype_id: 5}, 
@@ -322,6 +323,7 @@ app.post('/api/t8/game-version-seed', (req, res) => {
       const versions = db.prepare( `INSERT INTO t8versions (game_version, patch_date, season_id) VALUES (?,?,?) ON CONFLICT(game_version) DO NOTHING`)
      for (const version of knownVersion)
       versions.run(version.game_version, version.date_added, version.season_id)
+   res.send("versions")
    }
    catch(err){
       console.error(`Error adding patches table`)
@@ -337,7 +339,9 @@ app.post(`/api/t8/add-seasons`, (req, res) => {
       ]
       const seasons = db.prepare(`INSERT INTO t8seasons (id, start_game_version) VALUES (?,?) ON CONFLICT(id) DO NOTHING`)
       for (const season of knownSeasons)
-      seasons.run(season.id, season.game_start_version)
+      seasons.run(season.id, season.start_game_version)
+      res.send("seasons table seeded")
+      console.log("seasons seeded")
    }
    catch (err){
       console.error(`Error adding seasons table`)
@@ -412,6 +416,8 @@ app.post(`/api/t8/add-t8archetypes`, (req, res) => {
       for (const archetype of knownt8archetypes)
          archetypes.run(archetype.archetype_id, archetype.archetype_name, archetype.f_archetype)
       console.log("archetypes table seeded")
+      res.send('archetypes seeded');
+
    }
    catch(err){
       console.error(`Error adding t8archetypes`)

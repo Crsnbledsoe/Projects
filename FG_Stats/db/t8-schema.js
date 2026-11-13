@@ -28,7 +28,39 @@ season_id INTEGER
 )`);
     
 
-//initialize a table to track matches
+
+
+db.exec(`CREATE TABLE IF NOT EXISTS t8players (
+   polaris_id TEXT PRIMARY KEY,
+   user_id INTEGER,
+   username TEXT
+
+)`);
+
+db.exec(`CREATE TABLE IF NOT EXISTS t8seasons (
+   id INTEGER PRIMARY KEY,
+   start_game_version INTEGER,
+   FOREIGN KEY (start_game_version) REFERENCES
+   t8versions(game_version)
+   )`);
+
+   db.exec(`CREATE TABLE IF NOT EXISTS t8rankseasons (
+      rank_id INTEGER,
+      season_id INTEGER,
+      points_to_promote INTEGER,
+      PRIMARY KEY(rank_id, season_id),
+      FOREIGN KEY(rank_id) REFERENCES t8ranks(rank_id),
+      FOREIGN KEY (season_id) REFERENCES t8seasons(id)
+      )`);
+
+//create table of t8 archetypes
+db.exec(`CREATE TABLE IF NOT EXISTS t8archetypes (
+   archetype_id INTEGER PRIMARY KEY,
+   archetype_name TEXT, 
+   f_archetype TEXT
+   )`);
+
+   //initialize a table to track matches
 db.exec(`CREATE TABLE IF NOT EXISTS t8matches (
 match_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 battle_at INTEGER NOT NULL,
@@ -62,35 +94,3 @@ FOREIGN KEY (p2_rank) REFERENCES t8ranks(rank_id)
 
 
 )`);
-
-
-
-db.exec(`CREATE TABLE IF NOT EXISTS t8players (
-   polaris_id TEXT PRIMARY KEY,
-   user_id INTEGER,
-   username TEXT
-
-)`);
-
-db.exec(`CREATE TABLE IF NOT EXISTS t8seasons (
-   id INTEGER PRIMARY KEY,
-   start_game_version INTEGER,
-   FOREIGN KEY (start_game_version) REFERENCES
-   t8versions(game_version)
-   )`);
-
-   db.exec(`CREATE TABLE IF NOT EXISTS t8rankseasons (
-      rank_id INTEGER,
-      season_id INTEGER,
-      points_to_promote INTEGER,
-      PRIMARY KEY(rank_id, season_id),
-      FOREIGN KEY(rank_id) REFERENCES t8ranks(rank_id),
-      FOREIGN KEY (season_id) REFERENCES t8seasons(id)
-      )`);
-
-//create table of t8 archetypes
-db.exec(`CREATE TABLE IF NOT EXISTS t8archetypes (
-   archetype_id INTEGER PRIMARY KEY,
-   archetype_name TEXT, 
-   f_archetype TEXT
-   )`);
