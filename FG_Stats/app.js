@@ -181,6 +181,7 @@ app.post('/api/t8/fetch', async (req, res) => {
       const matches = db.prepare('INSERT INTO t8matches (battle_at, battle_type, game_version, p1_polaris_id, p1_user_id, p1_chara_id, p1_rank, p1_rating_before, p1_rating_change, p1_rounds, p2_polaris_id, p2_user_id, p2_chara_id, p2_rank, p2_rating_before, p2_rating_change, p2_rounds, stage_id, winner) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,? ) ON CONFLICT(battle_at,p1_polaris_id,p2_polaris_id) DO NOTHING')
       for (const match of t8matches) {
          currentMatch = match
+         if (match.p1_rating_before == null) console.log(match)
          const { p1_polaris_id, p1_user_id, p1_name, p2_polaris_id, p2_user_id, p2_name, battle_at, battle_type, game_version, p1_chara_id, p1_rank, p1_rating_before, p1_rating_change, p1_rounds, p2_chara_id, p2_rank, p2_rating_before, p2_rating_change, p2_rounds, stage_id, winner} = match
          stmt.run(p1_polaris_id, p1_user_id, p1_name);
          stmt.run(p2_polaris_id, p2_user_id, p2_name);
